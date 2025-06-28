@@ -18,7 +18,7 @@ document.getElementById("logoutBtn")?.addEventListener("click", () => {
 	window.location.href = "index.html";
 });
 
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "";
 
 function showToast(message, type = "success") {
 	const toastContainer =

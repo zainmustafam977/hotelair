@@ -3,10 +3,14 @@ const express = require("express");
 const sql = require("mssql");
 const cors = require("cors");
 const Joi = require("joi");
+const path = require("path");
 const config = require("./db.js");
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+// Serve static files from the public directory
+app.use(express.static(path.join(__dirname, 'public')));
 
 const handleError = (res, err) => {
 	console.error("❌ API Error:", err);
@@ -987,6 +991,21 @@ app.get('/api/analytics/bookings', async (req, res) => {
 		const result = await sql.query(`SELECT Status, COUNT(*) AS Count FROM Booking GROUP BY Status`);
 		res.json(result.recordset);
 	} catch (err) { handleError(res, err); }
+});
+
+// Root route - serve the main application
+app.get('/', (req, res) => {
+	res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+// Catch-all route for SPA - serve index.html for any non-API route
+app.get('*', (req, res) => {
+	// Don't interfere with API routes
+	if (req.path.startsWith('/api/')) {
+		return res.status(404).json({ error: 'API endpoint not found' });
+	}
+	// Serve index.html for all other routes (SPA routing)
+	res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.listen(3000,'0.0.0.0', () =>

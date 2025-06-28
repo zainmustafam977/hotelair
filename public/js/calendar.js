@@ -18,7 +18,7 @@ document.getElementById("logoutBtn")?.addEventListener("click", () => {
 	window.location.href = "index.html";
 });
 
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "";
 
 // Utility functions for API
 async function fetchBookings() {
