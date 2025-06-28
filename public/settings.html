@@ -1,0 +1,278 @@
+<!-- settings.html -->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Settings - HotelAir</title>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+			rel="stylesheet"
+		/>
+		<link href="css/modern-theme.css" rel="stylesheet" />
+	</head>
+	<body>
+		<div class="d-flex">
+			<nav class="sidebar bg-dark text-white p-3 vh-100" style="width: 240px">
+				<div class="hotelair-logo">
+					<svg viewBox="0 0 32 32" width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<defs>
+							<linearGradient id="hotelair-gradient" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+								<stop stop-color="#1976d2" />
+								<stop offset="1" stop-color="#00bcd4" />
+							</linearGradient>
+						</defs>
+						<rect x="2" y="10" width="28" height="16" rx="4" fill="url(#hotelair-gradient)"/>
+						<rect x="8" y="6" width="16" height="6" rx="2" fill="#fff" fill-opacity=".9"/>
+						<circle cx="10" cy="24" r="2" fill="#fff" fill-opacity=".8"/>
+						<circle cx="22" cy="24" r="2" fill="#fff" fill-opacity=".8"/>
+					</svg>
+					HotelAir
+				</div>
+				<ul class="nav flex-column">
+					<li class="nav-item">
+						<a href="dashboard.html" class="nav-link text-white">Dashboard</a>
+					</li>
+					<li class="nav-item">
+						<a href="rooms.html" class="nav-link text-white">Rooms</a>
+					</li>
+					<li class="nav-item">
+						<a href="bookings.html" class="nav-link text-white">Bookings</a>
+					</li>
+					<li class="nav-item">
+						<a href="calendar.html" class="nav-link text-white">Calendar</a>
+					</li>
+					<li class="nav-item">
+						<a href="guests.html" class="nav-link text-white">Guests</a>
+					</li>
+					<li class="nav-item">
+						<a href="staff.html" class="nav-link text-white">Staff</a>
+					</li>
+					<li class="nav-item">
+						<a href="payments.html" class="nav-link text-white">Payments</a>
+					</li>
+					<li class="nav-item">
+						<a href="settings.html" class="nav-link text-white active">Settings</a>
+					</li>
+				</ul>
+			</nav>
+
+			<div class="flex-grow-1">
+				<header class="navbar navbar-light px-4 shadow-sm">
+					<div class="d-flex align-items-center justify-content-between w-100">
+						<span class="navbar-brand">Settings</span>
+						<div class="d-flex align-items-center gap-2">
+							<button id="darkModeToggle" title="Toggle dark mode"><i class="bi bi-moon-fill"></i></button>
+							<button class="btn btn-outline-danger btn-sm ms-2" id="logoutBtn">Logout</button>
+						</div>
+					</div>
+				</header>
+
+				<main class="p-4">
+					<ul class="nav nav-tabs" id="settingsTabs" role="tablist">
+						<li class="nav-item" role="presentation">
+							<button
+								class="nav-link active"
+								id="admin-tab"
+								data-bs-toggle="tab"
+								data-bs-target="#admin"
+								type="button"
+								role="tab"
+							>
+								Admin Profile
+							</button>
+						</li>
+						<li class="nav-item" role="presentation">
+							<button
+								class="nav-link"
+								id="hotel-tab"
+								data-bs-toggle="tab"
+								data-bs-target="#hotel"
+								type="button"
+								role="tab"
+							>
+								Hotel Info
+							</button>
+						</li>
+					</ul>
+					<div class="tab-content" id="settingsContent">
+						<div class="tab-pane fade show active" id="admin" role="tabpanel">
+							<form id="adminForm" class="row g-3">
+								<div class="col-md-6">
+									<label class="form-label">Admin Name</label>
+									<input
+										type="text"
+										class="form-control"
+										id="adminName"
+										required
+										title="Admin Name"
+										placeholder="Enter admin name"
+										aria-describedby="adminNameError"
+									/>
+									<div class="invalid-feedback" id="adminNameError"></div>
+								</div>
+								<div class="col-md-6">
+									<label class="form-label">Admin Email</label>
+									<input
+										type="email"
+										class="form-control"
+										id="adminEmail"
+										required
+										title="Admin Email"
+										placeholder="Enter admin email"
+										aria-describedby="adminEmailError"
+									/>
+									<div class="invalid-feedback" id="adminEmailError"></div>
+								</div>
+								<div class="col-md-6">
+									<label class="form-label">Role</label>
+									<select id="adminRole" class="form-select" title="Admin Role" aria-describedby="adminRoleError">
+										<option value="admin">Admin</option>
+										<option value="manager">Manager</option>
+									</select>
+									<div class="invalid-feedback" id="adminRoleError"></div>
+								</div>
+								<div class="col-12">
+									<button type="submit" class="btn btn-primary">
+										Save Admin
+									</button>
+								</div>
+							</form>
+						</div>
+						<div class="tab-pane fade" id="hotel" role="tabpanel">
+							<form id="hotelForm" class="row g-3">
+								<div class="col-md-6">
+									<label class="form-label">Hotel Name</label>
+									<input
+										type="text"
+										class="form-control"
+										id="hotelName"
+										required
+										title="Hotel Name"
+										placeholder="Enter hotel name"
+										aria-describedby="hotelNameError"
+									/>
+									<div class="invalid-feedback" id="hotelNameError"></div>
+								</div>
+								<div class="col-md-6">
+									<label class="form-label">Phone</label>
+									<input
+										type="tel"
+										class="form-control"
+										id="hotelPhone"
+										title="Hotel Phone"
+										placeholder="Enter hotel phone"
+										aria-describedby="hotelPhoneError"
+									/>
+									<div class="invalid-feedback" id="hotelPhoneError"></div>
+								</div>
+								<div class="col-md-6">
+									<label class="form-label">Email</label>
+									<input
+										type="email"
+										class="form-control"
+										id="hotelEmail"
+										title="Hotel Email"
+										placeholder="Enter hotel email"
+										aria-describedby="hotelEmailError"
+									/>
+									<div class="invalid-feedback" id="hotelEmailError"></div>
+								</div>
+								<div class="col-md-6">
+									<label class="form-label">Logo URL</label>
+									<input
+										type="url"
+										class="form-control"
+										id="hotelLogo"
+										title="Hotel Logo URL"
+										placeholder="Enter logo URL"
+										aria-describedby="hotelLogoError"
+									/>
+									<div class="invalid-feedback" id="hotelLogoError"></div>
+								</div>
+								<div class="col-12">
+									<button type="submit" class="btn btn-primary">
+										Save Hotel Info
+									</button>
+								</div>
+							</form>
+						</div>
+					</div>
+
+					<form id="prefsForm" class="row g-3 mt-4">
+						<h5>Application Preferences</h5>
+						<div class="col-md-4">
+							<label class="form-label">Currency</label>
+							<select id="currency" class="form-select" title="Currency">
+								<option value="USD">USD</option>
+								<option value="EUR">EUR</option>
+								<option value="GBP">GBP</option>
+								<option value="PKR">PKR</option>
+							</select>
+						</div>
+						<div class="col-md-4">
+							<label class="form-label">Timezone</label>
+							<select id="timezone" class="form-select" title="Timezone">
+								<option value="GMT-5">GMT-5</option>
+								<option value="GMT+0">GMT+0</option>
+								<option value="GMT+5">GMT+5</option>
+								<option value="GMT+8">GMT+8</option>
+							</select>
+						</div>
+						<div class="col-md-4">
+							<label class="form-label">Date Format</label>
+							<select id="dateFormat" class="form-select" title="Date Format">
+								<option value="YYYY-MM-DD">YYYY-MM-DD</option>
+								<option value="MM/DD/YYYY">MM/DD/YYYY</option>
+								<option value="DD-MM-YYYY">DD-MM-YYYY</option>
+							</select>
+						</div>
+						<div class="col-12">
+							<button type="submit" class="btn btn-primary">Save Preferences</button>
+						</div>
+					</form>
+
+					<form id="userPrefsForm" class="row g-3 mt-4">
+						<h5>User Preferences</h5>
+						<div class="col-md-4">
+							<label class="form-label">Language</label>
+							<select id="userLang" class="form-select" title="Language">
+								<option value="en">English</option>
+								<option value="ur">Urdu</option>
+								<option value="ar">Arabic</option>
+								<option value="fr">French</option>
+							</select>
+						</div>
+						<div class="col-md-4">
+							<label class="form-label">Notifications</label>
+							<select id="userNotify" class="form-select" title="Notifications">
+								<option value="all">All</option>
+								<option value="important">Important Only</option>
+								<option value="none">None</option>
+							</select>
+						</div>
+						<div class="col-md-4">
+							<label class="form-label">Custom Theme</label>
+							<select id="userTheme" class="form-select" title="Custom Theme">
+								<option value="default">Default</option>
+								<option value="teal">Teal</option>
+								<option value="blue">Blue</option>
+								<option value="dark">Dark</option>
+							</select>
+						</div>
+						<div class="col-12">
+							<button type="submit" class="btn btn-primary">Save User Preferences</button>
+						</div>
+					</form>
+				</main>
+			</div>
+		</div>
+
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+		<script src="js/settings.js"></script>
+	</body>
+</html>

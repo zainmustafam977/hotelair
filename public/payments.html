@@ -1,0 +1,200 @@
+<!-- payments.html -->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Payments - HotelAir</title>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+			rel="stylesheet"
+		/>
+		<link href="css/modern-theme.css" rel="stylesheet" />
+	</head>
+	<body>
+		<div class="d-flex">
+			<nav class="sidebar bg-dark text-white p-3 vh-100" style="width: 240px">
+				<div class="hotelair-logo">
+					<svg viewBox="0 0 32 32" width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<defs>
+							<linearGradient id="hotelair-gradient" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+								<stop stop-color="#1976d2" />
+								<stop offset="1" stop-color="#00bcd4" />
+							</linearGradient>
+						</defs>
+						<rect x="2" y="10" width="28" height="16" rx="4" fill="url(#hotelair-gradient)"/>
+						<rect x="8" y="6" width="16" height="6" rx="2" fill="#fff" fill-opacity=".9"/>
+						<circle cx="10" cy="24" r="2" fill="#fff" fill-opacity=".8"/>
+						<circle cx="22" cy="24" r="2" fill="#fff" fill-opacity=".8"/>
+					</svg>
+					HotelAir
+				</div>
+				<ul class="nav flex-column">
+					<li class="nav-item">
+						<a href="dashboard.html" class="nav-link text-white">Dashboard</a>
+					</li>
+					<li class="nav-item">
+						<a href="rooms.html" class="nav-link text-white">Rooms</a>
+					</li>
+					<li class="nav-item">
+						<a href="bookings.html" class="nav-link text-white">Bookings</a>
+					</li>
+					<li class="nav-item">
+						<a href="calendar.html" class="nav-link text-white">Calendar</a>
+					</li>
+					<li class="nav-item">
+						<a href="guests.html" class="nav-link text-white">Guests</a>
+					</li>
+					<li class="nav-item">
+						<a href="staff.html" class="nav-link text-white">Staff</a>
+					</li>
+					<li class="nav-item">
+						<a href="payments.html" class="nav-link text-white active"
+							>Payments</a
+						>
+					</li>
+					<li class="nav-item">
+						<a href="settings.html" class="nav-link text-white">Settings</a>
+					</li>
+				</ul>
+			</nav>
+
+			<div class="flex-grow-1">
+				<header class="navbar navbar-light px-4 shadow-sm">
+					<div class="d-flex align-items-center justify-content-between w-100">
+						<span class="navbar-brand">Payment History</span>
+						<div class="d-flex align-items-center gap-2">
+							<button id="darkModeToggle" title="Toggle dark mode"><i class="bi bi-moon-fill"></i></button>
+							<button class="btn btn-outline-danger btn-sm ms-2" id="logoutBtn">Logout</button>
+							<button
+								class="btn btn-primary"
+								data-bs-toggle="modal"
+								data-bs-target="#paymentModal"
+							>
+								Add Payment
+							</button>
+						</div>
+					</div>
+				</header>
+
+				<main class="p-4">
+					<div class="table-responsive">
+						<table class="table table-bordered align-middle" id="paymentsTable">
+							<thead class="table-light">
+								<tr>
+									<th>#</th>
+									<th>Guest</th>
+									<th>Amount</th>
+									<th>Date</th>
+									<th>Method</th>
+									<th>Note</th>
+									<th>Actions</th>
+								</tr>
+							</thead>
+							<tbody></tbody>
+						</table>
+					</div>
+					<div class="row mt-4 justify-content-center" id="paymentsChartsRow">
+						<div class="col-md-8 col-lg-6">
+							<div class="card p-3">
+								<h6 class="mb-2">Payments by Method</h6>
+								<canvas id="paymentChart" height="120"></canvas>
+							</div>
+						</div>
+					</div>
+				</main>
+			</div>
+		</div>
+
+		<!-- Payment Modal -->
+		<div class="modal fade" id="paymentModal" tabindex="-1" aria-hidden="true">
+			<div class="modal-dialog">
+				<form class="modal-content" id="paymentForm">
+					<div class="modal-header">
+						<h5 class="modal-title">Record Payment</h5>
+						<button
+							type="button"
+							class="btn-close"
+							data-bs-dismiss="modal"
+						></button>
+					</div>
+					<div class="modal-body">
+						<input type="hidden" id="paymentId" />
+						<div class="mb-3">
+							<label class="form-label">Guest Name</label>
+							<input
+								type="text"
+								class="form-control"
+								id="paymentGuest"
+								required
+								aria-describedby="paymentGuestError"
+							/>
+							<div class="invalid-feedback" id="paymentGuestError"></div>
+						</div>
+						<div class="mb-3">
+							<label class="form-label">Amount ($)</label>
+							<input
+								type="number"
+								class="form-control"
+								id="paymentAmount"
+								required
+								aria-describedby="paymentAmountError"
+							/>
+							<div class="invalid-feedback" id="paymentAmountError"></div>
+						</div>
+						<div class="mb-3">
+							<label class="form-label">Date</label>
+							<input
+								type="date"
+								class="form-control"
+								id="paymentDate"
+								required
+								aria-describedby="paymentDateError"
+							/>
+							<div class="invalid-feedback" id="paymentDateError"></div>
+						</div>
+						<div class="mb-3">
+							<label class="form-label">Method</label>
+							<select class="form-select" id="paymentMethod" aria-describedby="paymentMethodError">
+								<option value="Cash">Cash</option>
+								<option value="Credit Card">Credit Card</option>
+								<option value="Online">Online</option>
+								<option value="Bank Transfer">Bank Transfer</option>
+							</select>
+							<div class="invalid-feedback" id="paymentMethodError"></div>
+						</div>
+						<div class="mb-3">
+							<label class="form-label">Note</label>
+							<textarea
+								class="form-control"
+								id="paymentNote"
+								rows="2"
+								aria-describedby="paymentNoteError"
+							></textarea>
+							<div class="invalid-feedback" id="paymentNoteError"></div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-primary">Save</button>
+						<button
+							type="button"
+							class="btn btn-secondary"
+							data-bs-dismiss="modal"
+						>
+							Cancel
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+		<script src="js/storage-utils.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+		<script src="js/payments.js"></script>
+	</body>
+</html>

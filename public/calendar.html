@@ -1,0 +1,225 @@
+<!-- calendar.html -->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Calendar View - HotelAir</title>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.css"
+			rel="stylesheet"
+		/>
+		<link href="css/modern-theme.css" rel="stylesheet" />
+	</head>
+	<body>
+		<div class="d-flex">
+			<nav class="sidebar bg-dark text-white p-3 vh-100" style="width: 240px">
+				<div class="hotelair-logo">
+					<svg viewBox="0 0 32 32" width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<defs>
+							<linearGradient id="hotelair-gradient" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+								<stop stop-color="#1976d2" />
+								<stop offset="1" stop-color="#00bcd4" />
+							</linearGradient>
+						</defs>
+						<rect x="2" y="10" width="28" height="16" rx="4" fill="url(#hotelair-gradient)"/>
+						<rect x="8" y="6" width="16" height="6" rx="2" fill="#fff" fill-opacity=".9"/>
+						<circle cx="10" cy="24" r="2" fill="#fff" fill-opacity=".8"/>
+						<circle cx="22" cy="24" r="2" fill="#fff" fill-opacity=".8"/>
+					</svg>
+					HotelAir
+				</div>
+				<ul class="nav flex-column">
+					<li class="nav-item">
+						<a href="dashboard.html" class="nav-link text-white">Dashboard</a>
+					</li>
+					<li class="nav-item">
+						<a href="rooms.html" class="nav-link text-white">Rooms</a>
+					</li>
+					<li class="nav-item">
+						<a href="bookings.html" class="nav-link text-white">Bookings</a>
+					</li>
+					<li class="nav-item">
+						<a href="calendar.html" class="nav-link text-white active"
+							>Calendar</a
+						>
+					</li>
+					<li class="nav-item">
+						<a href="guests.html" class="nav-link text-white">Guests</a>
+					</li>
+					<li class="nav-item">
+						<a href="staff.html" class="nav-link text-white">Staff</a>
+					</li>
+					<li class="nav-item">
+						<a href="payments.html" class="nav-link text-white">Payments</a>
+					</li>
+					<li class="nav-item">
+						<a href="settings.html" class="nav-link text-white">Settings</a>
+					</li>
+				</ul>
+			</nav>
+
+			<div class="flex-grow-1">
+				<header class="navbar navbar-light px-4 shadow-sm">
+					<div class="d-flex align-items-center justify-content-between w-100">
+						<span class="navbar-brand">
+							<i class="bi bi-calendar-event me-2"></i>
+							Booking Calendar
+						</span>
+						<div class="d-flex align-items-center gap-2">
+							<button id="darkModeToggle" title="Toggle dark mode"><i class="bi bi-moon-fill"></i></button>
+							<button class="btn btn-outline-danger btn-sm ms-2" id="logoutBtn">Logout</button>
+							<div class="btn-group" role="group" style="gap: 0.5rem;">
+								<button
+									class="btn btn-outline-primary"
+									onclick="calendar.changeView('dayGridMonth')"
+									title="Month View"
+								>
+									<i class="bi bi-calendar-month"></i> Month
+								</button>
+								<button
+									class="btn btn-outline-primary"
+									onclick="calendar.changeView('timeGridWeek')"
+									title="Week View"
+								>
+									<i class="bi bi-calendar-week"></i> Week
+								</button>
+								<button
+									class="btn btn-outline-primary"
+									onclick="calendar.changeView('timeGridDay')"
+									title="Day View"
+								>
+									<i class="bi bi-calendar-day"></i> Day
+								</button>
+							</div>
+						</div>
+					</div>
+				</header>
+
+				<main class="p-4">
+					<!-- Instructions Card -->
+					<div class="card mb-4">
+						<div class="card-body">
+							<h6 class="card-title text-primary mb-3">
+								<i class="bi bi-info-circle me-2"></i>Calendar Instructions
+							</h6>
+							<div class="row">
+								<div class="col-md-6">
+									<h6 class="text-success">Creating & Editing:</h6>
+									<ul class="list-unstyled small">
+										<li><i class="bi bi-mouse me-2"></i>Click and drag to select dates for new bookings</li>
+										<li><i class="bi bi-arrow-move me-2"></i>Drag events to change dates</li>
+										<li><i class="bi bi-arrows-expand me-2"></i>Resize events to change duration</li>
+										<li><i class="bi bi-cursor me-2"></i>Click events to view details and quick actions</li>
+									</ul>
+								</div>
+								<div class="col-md-6">
+									<h6 class="text-warning">Bulk Operations:</h6>
+									<ul class="list-unstyled small">
+										<li><i class="bi bi-ctrl me-2"></i>Ctrl+Click to select multiple bookings</li>
+										<li><i class="bi bi-box-arrow-in-right me-2"></i>Use Quick Check-in for today's arrivals</li>
+										<li><i class="bi bi-box-arrow-left me-2"></i>Use Quick Check-out for today's departures</li>
+										<li><i class="bi bi-x-circle me-2"></i>Bulk cancel selected bookings</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Calendar Container -->
+					<div id="calendar"></div>
+					
+					<!-- Enhanced Legend -->
+					<div class="legend mt-3">
+						<span class="confirmed">Confirmed</span>
+						<span class="checked-in">Checked-in</span>
+						<span class="checked-out">Checked-out</span>
+						<span class="cancelled">Cancelled</span>
+					</div>
+
+					<!-- Statistics Card -->
+					<div class="row mt-4">
+						<div class="col-md-3">
+							<div class="card text-center">
+								<div class="card-body">
+									<i class="bi bi-calendar-check text-primary fs-1"></i>
+									<h5 class="card-title mt-2" id="totalBookings">0</h5>
+									<p class="card-text text-muted">Total Bookings</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="card text-center">
+								<div class="card-body">
+									<i class="bi bi-box-arrow-in-right text-success fs-1"></i>
+									<h5 class="card-title mt-2" id="checkedInCount">0</h5>
+									<p class="card-text text-muted">Checked In</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="card text-center">
+								<div class="card-body">
+									<i class="bi bi-calendar-x text-warning fs-1"></i>
+									<h5 class="card-title mt-2" id="confirmedCount">0</h5>
+									<p class="card-text text-muted">Confirmed</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="card text-center">
+								<div class="card-body">
+									<i class="bi bi-x-circle text-danger fs-1"></i>
+									<h5 class="card-title mt-2" id="cancelledCount">0</h5>
+									<p class="card-text text-muted">Cancelled</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</main>
+			</div>
+		</div>
+
+		<!-- Event Details Modal -->
+		<div class="modal fade" id="eventModal" tabindex="-1" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">
+							<i class="bi bi-calendar-event me-2"></i>
+							Booking Details
+						</h5>
+						<button
+							type="button"
+							class="btn-close"
+							data-bs-dismiss="modal"
+						></button>
+					</div>
+					<div class="modal-body" id="eventModalBody"></div>
+					<div class="modal-footer">
+						<button
+							type="button"
+							class="btn btn-secondary"
+							data-bs-dismiss="modal"
+						>
+							<i class="bi bi-x-circle me-1"></i>Close
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
+		<script src="js/storage-utils.js"></script>
+		<script src="js/calendar.js"></script>
+	</body>
+</html>

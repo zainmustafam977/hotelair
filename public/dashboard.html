@@ -1,0 +1,323 @@
+<!-- dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Dashboard - HotelAir</title>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+			rel="stylesheet"
+		/>
+		<link href="css/modern-theme.css" rel="stylesheet" />
+	</head>
+	<body>
+		<div class="d-flex">
+			<nav class="sidebar bg-dark text-white p-3 vh-100" style="width: 240px">
+				<div class="hotelair-logo">
+					<svg viewBox="0 0 32 32" width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<defs>
+							<linearGradient id="hotelair-gradient" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+								<stop stop-color="#1976d2" />
+								<stop offset="1" stop-color="#00bcd4" />
+							</linearGradient>
+						</defs>
+						<rect x="2" y="10" width="28" height="16" rx="4" fill="url(#hotelair-gradient)"/>
+						<rect x="8" y="6" width="16" height="6" rx="2" fill="#fff" fill-opacity=".9"/>
+						<circle cx="10" cy="24" r="2" fill="#fff" fill-opacity=".8"/>
+						<circle cx="22" cy="24" r="2" fill="#fff" fill-opacity=".8"/>
+					</svg>
+					HotelAir
+				</div>
+				<ul class="nav flex-column">
+					<li class="nav-item">
+						<a href="dashboard.html" class="nav-link text-white active"
+							>Dashboard</a
+						>
+					</li>
+					<li class="nav-item">
+						<a href="rooms.html" class="nav-link text-white">Rooms</a>
+					</li>
+					<li class="nav-item">
+						<a href="bookings.html" class="nav-link text-white">Bookings</a>
+					</li>
+					<li class="nav-item">
+						<a href="calendar.html" class="nav-link text-white">Calendar</a>
+					</li>
+					<li class="nav-item">
+						<a href="guests.html" class="nav-link text-white">Guests</a>
+					</li>
+					<li class="nav-item">
+						<a href="staff.html" class="nav-link text-white">Staff</a>
+					</li>
+					<li class="nav-item">
+						<a href="payments.html" class="nav-link text-white">Payments</a>
+					</li>
+					<li class="nav-item">
+						<a href="settings.html" class="nav-link text-white">Settings</a>
+					</li>
+				</ul>
+			</nav>
+
+			<div class="flex-grow-1">
+				<header class="navbar navbar-light px-4 shadow-sm">
+					<div class="d-flex align-items-center justify-content-between w-100">
+						<span class="navbar-brand">Dashboard Overview</span>
+						<div class="d-flex align-items-center gap-2">
+							<div class="position-relative" id="notificationBellWrapper">
+								<button id="notificationBell" class="btn btn-link p-0 position-relative" title="Notifications" style="font-size:1.5rem;">
+									<i class="bi bi-bell"></i>
+									<span id="notificationBadge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="display:none;">0</span>
+								</button>
+								<div id="notificationDropdown" class="dropdown-menu dropdown-menu-end shadow" style="min-width:320px;max-height:400px;overflow-y:auto;"></div>
+							</div>
+							<button id="auditLogBtn" class="btn btn-outline-secondary" title="View Audit Log"><i class="bi bi-clipboard-data"></i></button>
+							<button id="darkModeToggle" title="Toggle dark mode"><i class="bi bi-moon-fill"></i></button>
+							<div class="d-flex align-items-center gap-2" id="quickActions">
+								<button class="btn btn-primary btn-sm" id="quickAddGuest" data-bs-toggle="tooltip" data-bs-title="Add new guest"><i class="bi bi-person-plus"></i> Add Guest</button>
+							</div>
+							<button class="btn btn-outline-danger btn-sm ms-2" id="logoutBtn">Logout</button>
+						</div>
+					</div>
+				</header>
+
+				<main class="p-4">
+					<div class="row g-4" id="dashboardMetrics">
+						<div class="col-md-3">
+							<div
+								class="card metric-card border-start border-primary border-4"
+							>
+								<div class="card-body">
+									<div
+										class="d-flex justify-content-between align-items-center"
+									>
+										<div>
+											<h6 class="text-muted">Total Rooms</h6>
+											<h4 id="totalRooms">0</h4>
+										</div>
+										<i
+											class="bi bi-door-closed-fill card-icon text-primary"
+										></i>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div
+								class="card metric-card border-start border-success border-4"
+							>
+								<div class="card-body">
+									<div
+										class="d-flex justify-content-between align-items-center"
+									>
+										<div>
+											<h6 class="text-muted">Available Rooms</h6>
+											<h4 id="availableRooms">0</h4>
+										</div>
+										<i
+											class="bi bi-check-circle-fill card-icon text-success"
+										></i>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div
+								class="card metric-card border-start border-warning border-4"
+							>
+								<div class="card-body">
+									<div
+										class="d-flex justify-content-between align-items-center"
+									>
+										<div>
+											<h6 class="text-muted">Occupancy Rate</h6>
+											<h4 id="occupancyRate">0%</h4>
+										</div>
+										<i class="bi bi-bar-chart-fill card-icon text-warning"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="card metric-card border-start border-info border-4">
+								<div class="card-body">
+									<div
+										class="d-flex justify-content-between align-items-center"
+									>
+										<div>
+											<h6 class="text-muted">Total Revenue</h6>
+											<h4 id="totalRevenue">$0</h4>
+										</div>
+										<i class="bi bi-currency-dollar card-icon text-info"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<hr class="my-4" />
+
+					<!-- Main Dashboard Content -->
+					<div class="row g-4">
+						<!-- Key Performance Charts -->
+						<div class="col-lg-8">
+							<div class="card dashboard-main-chart">
+								<div class="card-header bg-transparent border-0">
+									<h5 class="mb-0">
+										<i class="bi bi-graph-up me-2"></i>
+										Performance Overview
+									</h5>
+									<p class="text-muted small mb-0">Daily bookings and revenue trends</p>
+								</div>
+								<div class="card-body">
+									<canvas id="performanceChart" height="200"></canvas>
+								</div>
+							</div>
+						</div>
+
+						<!-- Quick Stats -->
+						<div class="col-lg-4">
+							<div class="card dashboard-stats">
+								<div class="card-header bg-transparent border-0">
+									<h5 class="mb-0">
+										<i class="bi bi-speedometer2 me-2"></i>
+										Quick Stats
+									</h5>
+								</div>
+								<div class="card-body">
+									<div class="row g-3">
+										<div class="col-6">
+											<div class="stat-item text-center p-3 rounded">
+												<div class="stat-icon mb-2">
+													<i class="bi bi-people-fill text-primary"></i>
+												</div>
+												<div class="stat-number h4 mb-1" id="totalGuests">0</div>
+												<div class="stat-label small text-muted">Total Guests</div>
+											</div>
+										</div>
+										<div class="col-6">
+											<div class="stat-item text-center p-3 rounded">
+												<div class="stat-icon mb-2">
+													<i class="bi bi-person-badge-fill text-success"></i>
+												</div>
+												<div class="stat-number h4 mb-1" id="totalStaff">0</div>
+												<div class="stat-label small text-muted">Total Staff</div>
+											</div>
+										</div>
+										<div class="col-6">
+											<div class="stat-item text-center p-3 rounded">
+												<div class="stat-icon mb-2">
+													<i class="bi bi-calendar-check-fill text-warning"></i>
+												</div>
+												<div class="stat-number h4 mb-1" id="activeBookings">0</div>
+												<div class="stat-label small text-muted">Active Bookings</div>
+											</div>
+										</div>
+										<div class="col-6">
+											<div class="stat-item text-center p-3 rounded">
+												<div class="stat-icon mb-2">
+													<i class="bi bi-cash-stack text-info"></i>
+												</div>
+												<div class="stat-number h4 mb-1" id="monthlyRevenue">$0</div>
+												<div class="stat-label small text-muted">This Month</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Recent Activity Section -->
+					<div class="row g-4 mt-2">
+						<div class="col-lg-8">
+							<div class="card">
+								<div class="card-header bg-transparent border-0 d-flex justify-content-between align-items-center">
+									<h5 class="mb-0">
+										<i class="bi bi-clock-history me-2"></i>
+										Recent Bookings
+									</h5>
+									<div class="d-flex gap-2" id="exportButtons">
+										<button class="btn btn-outline-primary btn-sm" id="exportBookingsPDF" data-bs-toggle="tooltip" data-bs-title="Export bookings to PDF">
+											<i class="bi bi-file-earmark-pdf"></i> Export
+										</button>
+									</div>
+								</div>
+								<div class="card-body p-0">
+									<div class="table-responsive">
+										<table class="table table-hover mb-0" id="recentBookings">
+											<thead class="table-light">
+												<tr>
+													<th>Guest</th>
+													<th>Room</th>
+													<th>Check-in</th>
+													<th>Check-out</th>
+													<th>Status</th>
+												</tr>
+											</thead>
+											<tbody></tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-4">
+							<div class="card">
+								<div class="card-header bg-transparent border-0">
+									<h5 class="mb-0">
+										<i class="bi bi-pie-chart-fill me-2"></i>
+										Room Status
+									</h5>
+								</div>
+								<div class="card-body">
+									<canvas id="roomStatusChart" height="200"></canvas>
+								</div>
+							</div>
+						</div>
+					</div>
+				</main>
+			</div>
+		</div>
+
+		<div id="toastContainer" class="toast-container position-fixed bottom-0 end-0 p-3 z-3"></div>
+
+		<!-- Audit Log Modal -->
+		<div class="modal fade" id="auditLogModal" tabindex="-1" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Audit Log</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+					</div>
+					<div class="modal-body">
+						<div class="table-responsive">
+							<table class="table table-bordered align-middle" id="auditLogTable">
+								<thead class="table-light">
+									<tr>
+										<th>Date</th>
+										<th>User</th>
+										<th>Action</th>
+										<th>Entity</th>
+										<th>Entity ID</th>
+										<th>Details</th>
+									</tr>
+								</thead>
+								<tbody></tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+		<script src="js/storage-utils.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+		<script src="js/dashboard.js"></script>
+	</body>
+</html>

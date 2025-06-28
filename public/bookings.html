@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Bookings - HotelAir</title>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+			rel="stylesheet"
+		/>
+		<link href="css/modern-theme.css" rel="stylesheet" />
+	</head>
+	<body>
+		<div class="d-flex">
+			<nav class="sidebar bg-dark text-white p-3 vh-100" style="width: 240px">
+				<div class="hotelair-logo">
+					<svg viewBox="0 0 32 32" width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<defs>
+							<linearGradient id="hotelair-gradient" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+								<stop stop-color="#1976d2" />
+								<stop offset="1" stop-color="#00bcd4" />
+							</linearGradient>
+						</defs>
+						<rect x="2" y="10" width="28" height="16" rx="4" fill="url(#hotelair-gradient)"/>
+						<rect x="8" y="6" width="16" height="6" rx="2" fill="#fff" fill-opacity=".9"/>
+						<circle cx="10" cy="24" r="2" fill="#fff" fill-opacity=".8"/>
+						<circle cx="22" cy="24" r="2" fill="#fff" fill-opacity=".8"/>
+					</svg>
+					HotelAir
+				</div>
+				<ul class="nav flex-column">
+					<li class="nav-item">
+						<a href="dashboard.html" class="nav-link text-white">Dashboard</a>
+					</li>
+					<li class="nav-item">
+						<a href="rooms.html" class="nav-link text-white">Rooms</a>
+					</li>
+					<li class="nav-item">
+						<a href="bookings.html" class="nav-link text-white active"
+							>Bookings</a
+						>
+					</li>
+					<li class="nav-item">
+						<a href="calendar.html" class="nav-link text-white">Calendar</a>
+					</li>
+					<li class="nav-item">
+						<a href="guests.html" class="nav-link text-white">Guests</a>
+					</li>
+					<li class="nav-item">
+						<a href="staff.html" class="nav-link text-white">Staff</a>
+					</li>
+					<li class="nav-item">
+						<a href="payments.html" class="nav-link text-white">Payments</a>
+					</li>
+					<li class="nav-item">
+						<a href="settings.html" class="nav-link text-white">Settings</a>
+					</li>
+				</ul>
+			</nav>
+			<div class="flex-grow-1">
+				<header class="navbar navbar-light px-4 shadow-sm">
+					<div class="d-flex align-items-center justify-content-between w-100">
+						<span class="navbar-brand">Booking Management</span>
+						<div class="d-flex align-items-center gap-2">
+							<button id="darkModeToggle" title="Toggle dark mode"><i class="bi bi-moon-fill"></i></button>
+							<button class="btn btn-outline-danger btn-sm ms-2" id="logoutBtn">Logout</button>
+							<button
+								class="btn btn-primary"
+								data-bs-toggle="modal"
+								data-bs-target="#bookingModal"
+							>
+								<i class="bi bi-plus-circle"></i> Add Booking
+							</button>
+						</div>
+					</div>
+				</header>
+				<main class="p-4">
+					<div id="loadingSpinner" class="text-center my-3" style="display: none">
+						<div class="spinner-border text-primary"></div>
+					</div>
+					<!-- Filter Row and Summary inserted by JS -->
+					<div class="table-responsive">
+						<table class="table table-bordered align-middle" id="bookingsTable">
+							<thead class="table-light">
+								<tr>
+									<th>#</th>
+									<th>Guest</th>
+									<th>Room</th>
+									<th>Check-in</th>
+									<th>Check-out</th>
+									<th>Status</th>
+									<th>Actions</th>
+								</tr>
+							</thead>
+							<tbody></tbody>
+						</table>
+					</div>
+				</main>
+			</div>
+		</div>
+
+		<!-- Booking Modal -->
+		<div class="modal fade" id="bookingModal" tabindex="-1" aria-hidden="true">
+			<div class="modal-dialog">
+				<form class="modal-content" id="bookingForm">
+					<div class="modal-header">
+						<h5 class="modal-title">Booking Form</h5>
+						<button
+							type="button"
+							class="btn-close"
+							data-bs-dismiss="modal"
+						></button>
+					</div>
+					<div class="modal-body">
+						<input type="hidden" id="bookingId" />
+						<div class="mb-3">
+							<label class="form-label">Guest Name</label>
+							<input
+								type="text"
+								class="form-control"
+								id="guestName"
+								required
+								list="guestList"
+								aria-describedby="guestNameError"
+							/>
+							<div class="invalid-feedback" id="guestNameError"></div>
+						</div>
+						<div class="mb-3">
+							<label class="form-label">Room</label>
+							<select class="form-select" id="roomSelect" aria-describedby="roomSelectError"></select>
+							<div class="invalid-feedback" id="roomSelectError"></div>
+						</div>
+						<div class="mb-3">
+							<label class="form-label">Check-in</label>
+							<input type="date" class="form-control" id="checkin" required aria-describedby="checkinError" />
+							<div class="invalid-feedback" id="checkinError"></div>
+						</div>
+						<div class="mb-3">
+							<label class="form-label">Check-out</label>
+							<input type="date" class="form-control" id="checkout" required aria-describedby="checkoutError" />
+							<div class="invalid-feedback" id="checkoutError"></div>
+						</div>
+						<div class="mb-3">
+							<label class="form-label">Status</label>
+							<select class="form-select" id="bookingStatus">
+								<option value="confirmed">Confirmed</option>
+								<option value="checked-in">Checked-in</option>
+								<option value="checked-out">Checked-out</option>
+								<option value="cancelled">Cancelled</option>
+							</select>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-primary">Save</button>
+						<button
+							type="button"
+							class="btn btn-secondary"
+							data-bs-dismiss="modal"
+						>
+							Cancel
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<datalist id="guestList"></datalist>
+
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+		<script src="js/storage-utils.js"></script>
+		<script src="js/bookings.js"></script>
+	</body>
+</html>
