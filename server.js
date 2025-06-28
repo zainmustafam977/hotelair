@@ -998,13 +998,45 @@ app.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Catch-all route for SPA - serve index.html for any non-API route
-app.get('*', (req, res) => {
-	// Don't interfere with API routes
+// Serve specific HTML pages for SPA routing
+app.get('/dashboard', (req, res) => {
+	res.sendFile(path.join(__dirname, 'public', 'dashboard.html'));
+});
+
+app.get('/bookings', (req, res) => {
+	res.sendFile(path.join(__dirname, 'public', 'bookings.html'));
+});
+
+app.get('/calendar', (req, res) => {
+	res.sendFile(path.join(__dirname, 'public', 'calendar.html'));
+});
+
+app.get('/guests', (req, res) => {
+	res.sendFile(path.join(__dirname, 'public', 'guests.html'));
+});
+
+app.get('/rooms', (req, res) => {
+	res.sendFile(path.join(__dirname, 'public', 'rooms.html'));
+});
+
+app.get('/staff', (req, res) => {
+	res.sendFile(path.join(__dirname, 'public', 'staff.html'));
+});
+
+app.get('/payments', (req, res) => {
+	res.sendFile(path.join(__dirname, 'public', 'payments.html'));
+});
+
+app.get('/settings', (req, res) => {
+	res.sendFile(path.join(__dirname, 'public', 'settings.html'));
+});
+
+// 404 handler for any other routes
+app.use((req, res) => {
 	if (req.path.startsWith('/api/')) {
 		return res.status(404).json({ error: 'API endpoint not found' });
 	}
-	// Serve index.html for all other routes (SPA routing)
+	// For any other route, serve index.html (SPA fallback)
 	res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
