@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	let hotelId = null;
 
 	// Load admin profile
-	fetch("http://localhost:3000/api/admin-profile")
+	fetch("/api/admin-profile")
 		.then(res => res.ok ? res.json() : null)
 		.then(data => {
 			if (data) {
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 		});
 	// Load hotel info
-	fetch("http://localhost:3000/api/hotel-info")
+	fetch("/api/hotel-info")
 		.then(res => res.ok ? res.json() : null)
 		.then(data => {
 			if (data) {
@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	async function saveSettings(settings) {
 		try {
-			await fetch("http://localhost:3000/api/settings", {
+			await fetch("/api/settings", {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(settings),
@@ -86,13 +86,13 @@ document.addEventListener("DOMContentLoaded", () => {
 		};
 		try {
 			if (adminId) {
-				await fetch(`http://localhost:3000/api/admin-profile/${adminId}`, {
+				await fetch(`/api/admin-profile/${adminId}`, {
 					method: "PUT",
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify(payload),
 				});
 			} else {
-				const res = await fetch("http://localhost:3000/api/admin-profile", {
+				const res = await fetch("/api/admin-profile", {
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify(payload),
@@ -116,13 +116,13 @@ document.addEventListener("DOMContentLoaded", () => {
 		};
 		try {
 			if (hotelId) {
-				await fetch(`http://localhost:3000/api/hotel-info/${hotelId}`, {
+				await fetch(`/api/hotel-info/${hotelId}`, {
 					method: "PUT",
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify(payload),
 				});
 			} else {
-				const res = await fetch("http://localhost:3000/api/hotel-info", {
+				const res = await fetch("/api/hotel-info", {
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify(payload),
@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	// --- PREFS FORM LOAD FROM DB ---
 	const prefsForm = document.getElementById("prefsForm");
 	if (prefsForm) {
-		fetch("http://localhost:3000/api/settings")
+		fetch("/api/settings")
 			.then(res => res.json())
 			.then(settings => {
 				if (settings.currency) document.getElementById("currency").value = settings.currency;
@@ -154,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				dateFormat: document.getElementById("dateFormat").value,
 			};
 			try {
-				await fetch("http://localhost:3000/api/settings", {
+				await fetch("/api/settings", {
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify(settings),
@@ -244,7 +244,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	const sessionUser = JSON.parse(localStorage.getItem("sessionUser") || "null");
 	if (userPrefsForm && sessionUser && sessionUser.UserID) {
 		// Load user preferences on page load
-		fetch(`http://localhost:3000/api/user-preferences/${sessionUser.UserID}`)
+		fetch(`/api/user-preferences/${sessionUser.UserID}`)
 			.then(res => res.json())
 			.then(prefs => {
 				if (prefs.Language || prefs.language) document.getElementById("userLang").value = prefs.Language || prefs.language;
@@ -261,7 +261,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				Theme: document.getElementById("userTheme").value,
 			};
 			try {
-				await fetch(`http://localhost:3000/api/user-preferences/${sessionUser.UserID}`, {
+				await fetch(`/api/user-preferences/${sessionUser.UserID}`, {
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify(prefs),

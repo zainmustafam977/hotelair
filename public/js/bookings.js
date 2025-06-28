@@ -393,7 +393,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	applyTheme();
 
 	window.showGuestDetails = async function(guestId) {
-		const res = await fetch(`http://localhost:3000/api/guests`);
+		const res = await fetch(`/api/guests`);
 		const guests = await res.json();
 		const g = guests.find(x => x.GuestID == guestId);
 		if (!g) return;
@@ -414,7 +414,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		new bootstrap.Modal(modal).show();
 	}
 	window.showRoomDetails = async function(roomId) {
-		const res = await fetch(`http://localhost:3000/api/rooms`);
+		const res = await fetch(`/api/rooms`);
 		const rooms = await res.json();
 		const room = rooms.find(r => r.RoomID == roomId);
 		if (!room) return;

@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	async function fetchRoomTypes() {
 		try {
-			const res = await fetch("http://localhost:3000/api/room-types");
+			const res = await fetch("/api/room-types");
 			roomTypes = await res.json();
 			typeInput.innerHTML = roomTypes
 				.map((rt) => `<option value="${rt.TypeID}">${rt.Name}</option>`)
@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	async function fetchRooms() {
 		setLoading(true);
 		try {
-			const res = await fetch("http://localhost:3000/api/rooms");
+			const res = await fetch("/api/rooms");
 			allRooms = await res.json();
 			renderRooms();
 		} catch (err) {
@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	window.deleteRoom = async function (roomId) {
 		if (!confirm("Delete this room?")) return;
 		try {
-			await fetch(`http://localhost:3000/api/rooms/${roomId}`, {
+			await fetch(`/api/rooms/${roomId}`, {
 				method: "DELETE",
 			});
 			fetchRooms();
@@ -152,7 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	};
 
 	window.showRoomDetails = async function(roomId) {
-		const res = await fetch(`http://localhost:3000/api/rooms`);
+		const res = await fetch(`/api/rooms`);
 		const rooms = await res.json();
 		const room = rooms.find(r => r.RoomID == roomId);
 		if (!room) return;
@@ -244,8 +244,8 @@ document.addEventListener("DOMContentLoaded", () => {
 		try {
 			const method = roomData.RoomID ? "PUT" : "POST";
 			const endpoint = roomData.RoomID
-				? `http://localhost:3000/api/rooms/${roomData.RoomID}`
-				: "http://localhost:3000/api/rooms";
+				? `/api/rooms/${roomData.RoomID}`
+				: "/api/rooms";
 
 			const res = await fetch(endpoint, {
 				method,

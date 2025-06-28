@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	async function fetchGuests() {
 		setLoading(true);
 		try {
-			const res = await fetch("http://localhost:3000/api/guests");
+			const res = await fetch("/api/guests");
 			if (!res.ok) throw new Error("Failed to fetch guests");
 			return await res.json();
 		} catch (err) {
@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	window.editGuest = async function (id) {
 		setLoading(true);
 		try {
-			const res = await fetch(`http://localhost:3000/api/guests`);
+			const res = await fetch(`/api/guests`);
 			const guests = await res.json();
 			const g = guests.find((x) => x.GuestID == id);
 			if (!g) return;
@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		if (!confirm("Are you sure you want to delete this guest?")) return;
 		setLoading(true);
 		try {
-			await fetch(`http://localhost:3000/api/guests/${id}`, {
+			await fetch(`/api/guests/${id}`, {
 				method: "DELETE",
 			});
 			showToast("Guest deleted.");
@@ -214,7 +214,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		const id = idInput.value;
 		try {
 			const res = await fetch(
-				`http://localhost:3000/api/guests${id ? "/" + id : ""}`,
+				`/api/guests${id ? "/" + id : ""}`,
 				{
 					method: id ? "PUT" : "POST",
 					headers: { "Content-Type": "application/json" },
