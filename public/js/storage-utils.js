@@ -85,6 +85,11 @@ function setupMobileSidebar() {
 		toggleBtn.setAttribute('type', 'button');
 		toggleBtn.setAttribute('title', 'Toggle Menu');
 		
+		// Force visibility on mobile
+		toggleBtn.style.display = 'block';
+		toggleBtn.style.visibility = 'visible';
+		toggleBtn.style.opacity = '1';
+		
 		// Insert as first element in the navbar's right-side container
 		const rightContainer = navbar.querySelector('.d-flex');
 		if (rightContainer) {
@@ -113,8 +118,13 @@ function setupMobileSidebar() {
 	
 	if (toggleBtn && sidebar) {
 		// Remove existing event listeners to prevent duplicates
-		toggleBtn.replaceWith(toggleBtn.cloneNode(true));
-		const newToggleBtn = document.getElementById('sidebarToggle');
+		const newToggleBtn = toggleBtn.cloneNode(true);
+		toggleBtn.parentNode.replaceChild(newToggleBtn, toggleBtn);
+		
+		// Force visibility again after cloning
+		newToggleBtn.style.display = 'block';
+		newToggleBtn.style.visibility = 'visible';
+		newToggleBtn.style.opacity = '1';
 		
 		newToggleBtn.onclick = function(e) {
 			e.preventDefault();
@@ -156,13 +166,14 @@ function setupMobileSidebar() {
 
 // Initialize mobile sidebar when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-	setupMobileSidebar();
+	// Small delay to ensure all scripts are loaded
+	setTimeout(setupMobileSidebar, 50);
 });
 
 // Re-setup on window resize to handle orientation changes
 window.addEventListener('resize', () => {
 	if (window.innerWidth <= 767.98) {
-		setupMobileSidebar();
+		setTimeout(setupMobileSidebar, 100);
 	}
 });
 
@@ -172,3 +183,23 @@ document.addEventListener('visibilitychange', () => {
 		setTimeout(setupMobileSidebar, 100);
 	}
 });
+
+// Additional initialization for pages with complex forms (like settings)
+window.addEventListener('load', () => {
+	if (window.innerWidth <= 767.98) {
+		setTimeout(setupMobileSidebar, 200);
+	}
+});
+
+// Force setup on any user interaction (for immediate visibility)
+document.addEventListener('touchstart', () => {
+	if (window.innerWidth <= 767.98 && !document.getElementById('sidebarToggle')) {
+		setupMobileSidebar();
+	}
+}, { once: true });
+
+document.addEventListener('click', () => {
+	if (window.innerWidth <= 767.98 && !document.getElementById('sidebarToggle')) {
+		setupMobileSidebar();
+	}
+}, { once: true });

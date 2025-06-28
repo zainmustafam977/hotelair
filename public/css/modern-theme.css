@@ -772,6 +772,8 @@ header.navbar, .navbar {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
   .sidebar-toggle::before {
     content: '';
@@ -798,6 +800,9 @@ header.navbar, .navbar {
     order: -1;
     margin-right: 0.5rem;
     flex-shrink: 0;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
   #sidebarToggle:not(.navbar .sidebar-toggle) {
     display: none !important;
