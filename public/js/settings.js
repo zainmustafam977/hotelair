@@ -1,4 +1,6 @@
-// settings.js
+// settings.js - Settings management with deployment fixes
+// Fixed: Changed from localhost:3000 to relative URLs for mobile compatibility
+// Fixed: Changed from login.html to index.html for navigation
 
 // preload dark theme before DOM loads (insert this in head of ALL HTML files)
 // <script>document.documentElement.classList.toggle('dark-mode', JSON.parse(localStorage.getItem('settings') || '{}')?.prefs?.theme === 'dark');</script>

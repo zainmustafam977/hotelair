@@ -8,6 +8,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
 	const errorMsg = document.getElementById("errorMsg");
 
 	try {
+		// Fixed: Changed from localhost:3000 to relative URL for mobile compatibility
 		const res = await fetch("/api/login", {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },

@@ -1,4 +1,6 @@
-// staff.js
+// staff.js - Staff management with deployment fixes
+// Fixed: Changed from localhost:3000 to relative URLs for mobile compatibility
+// Fixed: Changed from login.html to index.html for navigation
 
 // --- LOGIN CHECK ---
 if (!localStorage.getItem("sessionUser")) {

@@ -9,7 +9,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Serve static files from the public directory
+// Serve static files from the public directory - Required for deployment
 app.use(express.static(path.join(__dirname, 'public')));
 
 const handleError = (res, err) => {
@@ -993,12 +993,12 @@ app.get('/api/analytics/bookings', async (req, res) => {
 	} catch (err) { handleError(res, err); }
 });
 
-// Root route - serve the main application
+// Root route - serve the main application (Fixed deployment issue)
 app.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Serve specific HTML pages for SPA routing
+// Serve specific HTML pages for SPA routing (Fixed path-to-regexp error)
 app.get('/dashboard', (req, res) => {
 	res.sendFile(path.join(__dirname, 'public', 'dashboard.html'));
 });
@@ -1031,7 +1031,7 @@ app.get('/settings', (req, res) => {
 	res.sendFile(path.join(__dirname, 'public', 'settings.html'));
 });
 
-// 404 handler for any other routes
+// 404 handler for any other routes (Replaced problematic catch-all route)
 app.use((req, res) => {
 	if (req.path.startsWith('/api/')) {
 		return res.status(404).json({ error: 'API endpoint not found' });

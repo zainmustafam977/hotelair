@@ -15,9 +15,11 @@ if (!document.getElementById("logoutBtn")) {
 }
 document.getElementById("logoutBtn")?.addEventListener("click", () => {
 	localStorage.removeItem("sessionUser");
+	// Fixed: Changed from login.html to index.html (renamed file)
 	window.location.href = "index.html";
 });
 
+// Fixed: Changed from localhost:3000 to empty string for deployment compatibility
 const BASE_URL = "";
 
 function showToast(message, type = "danger") {
