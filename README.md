@@ -1,4 +1,4 @@
-# <img src="public/favicon.ico" width="32" style="vertical-align:middle;"> HotelAir - Hotel Management System
+# <img src="public/favicon.png" width="64" style="vertical-align:middle;"> HotelAir - Hotel Management System
 
 ![Project Badge](https://img.shields.io/badge/HotelAir-Modern%20Hotel%20Management-blueviolet?style=for-the-badge&logo=vercel)
 
