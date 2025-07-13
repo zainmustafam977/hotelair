@@ -1,8 +1,60 @@
-# HotelAir - Hotel Management System
+# <img src="public/favicon.ico" width="32" style="vertical-align:middle;"> HotelAir - Hotel Management System
 
-A modern hotel management system built with Node.js, Express, and SQL Server.
+![Project Badge](https://img.shields.io/badge/HotelAir-Modern%20Hotel%20Management-blueviolet?style=for-the-badge&logo=vercel)
 
-## Project Structure
+---
+
+## ✨ About Us
+
+**HotelAir** is a modern, full-featured hotel management system built as an academic project for the University of Management and Technology (UMT), Lahore.
+
+- **Course:** IT310 - Web Technologies (Section V4)
+- **Professor:** Muhammad Jawad Farooq
+- **Semester:** Spring 2024
+- **Team:**
+  - Muhammad Zain (F2023266257) — _ZACODEC_ ([zacodec@umt.edu.pk](mailto:f2023266257@umt.edu.pk))
+  - Moeen Ahmad Butt (F2021266469)
+  - M. Yasir (F2022266665)
+
+---
+
+## 🚀 Features
+
+| Feature                | Description                                      |
+|-----------------------|--------------------------------------------------|
+| 🏨 Room Management    | Add, edit, and manage hotel rooms and types      |
+| 📅 Booking Management | Create, update, and track guest bookings         |
+| 👥 Guest Directory    | Manage guest profiles and contact info           |
+| 👨‍💼 Staff Directory  | Manage staff roles and details                   |
+| 💳 Payments           | Track payments, methods, and analytics           |
+| 📊 Dashboard         | Visual analytics, KPIs, and quick stats          |
+| 🗓️ Calendar View      | Interactive calendar for bookings                |
+| ⚙️ Settings           | App, hotel, and user preferences                 |
+| 🌙 Dark Mode          | Modern UI with dark/light mode                   |
+| 📱 Responsive Design  | Mobile-friendly, sidebar overlay, touch support  |
+| 🔒 Secure Auth        | User login and session management                |
+| 🔔 Notifications      | Alerts, audit logs, and activity tracking        |
+
+---
+
+## 🖼️ Screenshots
+
+> _Add screenshots of the dashboard, bookings, calendar, and mobile view here for a visual overview._
+
+---
+
+## 🛠️ Tech Stack
+
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=node.js&logoColor=white)
+![Express](https://img.shields.io/badge/Express-000000?style=flat-square&logo=express&logoColor=white)
+![SQL Server](https://img.shields.io/badge/SQL%20Server-CC2927?style=flat-square&logo=microsoftsqlserver&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=flat-square&logo=bootstrap&logoColor=white)
+![Chart.js](https://img.shields.io/badge/Chart.js-FF6384?style=flat-square&logo=chartdotjs&logoColor=white)
+![FullCalendar](https://img.shields.io/badge/FullCalendar-1976d2?style=flat-square)
+
+---
+
+## 📦 Project Structure
 
 ```
 HOTELAIR/
@@ -19,80 +71,76 @@ HOTELAIR/
 │   ├── staff.html         # Staff management
 │   ├── payments.html      # Payment management
 │   ├── settings.html      # Settings
+│   ├── about.html         # About Us page
 │   ├── js/                # JavaScript files
 │   ├── css/               # CSS files
 │   └── assets/            # Images, icons, etc.
 └── HotelAir.sql           # Database schema
 ```
 
-## Setup Instructions
+---
 
-### 1. Install Dependencies
+## ⚡ Quick Start
+
+### 1. **Install Dependencies**
 ```bash
 npm install
 ```
 
-### 2. Start the API Server
+### 2. **Start the API Server**
 ```bash
 node server.js
 ```
-The API server will run on `http://localhost:3000`
+API server runs at `http://localhost:3000`
 
-### 3. Start the Web Server
-You have several options:
+### 3. **Start the Web Server**
+- **Option A:** VS Code Live Server (recommended)
+- **Option B:**
+  ```bash
+  npx serve public
+  ```
+- **Option C:**
+  ```bash
+  cd public
+  python -m http.server 5500
+  ```
 
-#### Option A: VS Code Live Server
-1. Right-click on the `public/` folder in VS Code
-2. Select "Open with Live Server"
-3. Your app will open at `http://localhost:5500`
+### 4. **Access the Application**
+- **Frontend:** `http://localhost:5500` (or your chosen port)
+- **API:** `http://localhost:3000/api/...`
 
-#### Option B: Node.js Serve
-```bash
-npx serve public
-```
+---
 
-#### Option C: Python HTTP Server
-```bash
-cd public
-python -m http.server 5500
-```
+## 🗄️ Database Configuration
 
-### 4. Access the Application
-- **Frontend**: `http://localhost:5500` (or your chosen port)
-- **API**: `http://localhost:3000/api/...`
+- **Server:** den1.mssql8.gear.host
+- **Database:** HotelAir
+- **Username:** hotelair
+- **Password:** (see `db.js`)
 
-## Database Configuration
+---
 
-The application is configured to connect to an online SQL Server:
-- **Server**: den1.mssql8.gear.host
-- **Database**: HotelAir
-- **Username**: hotelair
+## 📚 Documentation
 
-## Features
+- All code is thoroughly commented for easy understanding.
+- See the [About Us](public/about.html) page for team, academic, and contact info.
+- For schema details, see `HotelAir.sql`.
 
-- ✅ User authentication
-- ✅ Dashboard with analytics
-- ✅ Room management
-- ✅ Booking management
-- ✅ Guest management
-- ✅ Staff management
-- ✅ Payment tracking
-- ✅ Calendar view
-- ✅ Settings management
-- ✅ Dark mode support
-- ✅ Responsive design
+---
 
-## Deployment
+## 📬 Contact
 
-This project is organized for easy deployment:
-- Frontend files are in the `public/` directory
-- Backend files are in the root directory
-- Database configuration is separate in `db.js`
+- **Lead:** Muhammad Zain (ZACODEC) — [f2023266257@umt.edu.pk](mailto:f2023266257@umt.edu.pk)
+- **Phone:** +92 302 2389814
+- **University:** [UMT Lahore](https://www.umt.edu.pk/)
 
-## Technologies Used
+---
 
-- **Backend**: Node.js, Express, SQL Server
-- **Frontend**: HTML5, CSS3, JavaScript, Bootstrap 5
-- **Database**: Microsoft SQL Server
-- **Charts**: Chart.js
-- **Icons**: Bootstrap Icons 
+## 🙏 Acknowledgements
+
+- Special thanks to our professor, Muhammad Jawad Farooq, for guidance and support.
+- Inspired by real-world hotel management needs and modern web design best practices.
+
+---
+
+> _HotelAir — Making hotel management modern, efficient, and fun!_ 
