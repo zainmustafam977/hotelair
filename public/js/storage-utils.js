@@ -1,4 +1,10 @@
-// storage-utils.js
+// storage-utils.js - Utility functions for HotelAir
+// Author: Team HotelAir (ZACODEC, Moeen Ahmad Butt, M. Yasir)
+// University of Management and Technology (UMT) | IT310 - Web Technologies
+//
+// This file provides utility functions for localStorage, ID generation, and mobile sidebar logic.
+//
+// --- Utility Functions ---
 
 /**
  * Generate a unique ID using prefix

@@ -1,7 +1,9 @@
-// rooms.js - Room management with deployment fixes
-// Fixed: Changed from localhost:3000 to relative URLs for mobile compatibility
-// Fixed: Changed from login.html to index.html for navigation
-
+// rooms.js - Handles room management logic for HotelAir
+// Author: Team HotelAir (ZACODEC, Moeen Ahmad Butt, M. Yasir)
+// University of Management and Technology (UMT) | IT310 - Web Technologies
+//
+// This file manages room data: loading, rendering, validation, and theme.
+//
 // --- LOGIN CHECK ---
 if (!localStorage.getItem("sessionUser")) {
 	window.location.href = "index.html";

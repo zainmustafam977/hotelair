@@ -1,16 +1,124 @@
+<!-- About Us Page for HotelAir -->
+<!-- Author: Team HotelAir (ZACODEC, Moeen Ahmad Butt, M. Yasir) -->
+<!-- University of Management and Technology (UMT) | IT310 - Web Technologies -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Meta and CSS includes -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About Us - HotelAir</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
   <link href="css/modern-theme.css" rel="stylesheet" />
+  <!-- Custom styles for About Us page -->
+  <style>
+    .about-hero {
+      background: linear-gradient(135deg, #1976d2 0%, #00bcd4 100%);
+      color: #fff;
+      border-radius: 1.5rem;
+      box-shadow: 0 4px 32px rgba(25, 118, 210, 0.15);
+      padding: 2.5rem 1.5rem 2rem 1.5rem;
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-hero .nickname {
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      background: linear-gradient(90deg, #ffd600 0%, #00ffd0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      display: inline-block;
+      margin-left: 0.5rem;
+    }
+    .about-hero .badge {
+      font-size: 1rem;
+      background: #ffd600;
+      color: #222;
+      margin-left: 0.5rem;
+    }
+    .about-hero .wave {
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      background: url('data:image/svg+xml;utf8,<svg width="100%25" height="100%25" viewBox="0 0 1440 320" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="%23fff" fill-opacity="0.3" d="M0,160L60,170.7C120,181,240,203,360,197.3C480,192,600,160,720,133.3C840,107,960,85,1080,101.3C1200,117,1320,171,1380,197.3L1440,224L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>');
+      background-size: cover;
+      z-index: 1;
+    }
+    .about-contact-card {
+      background: linear-gradient(135deg, #fff 60%, #e3f2fd 100%);
+      border-radius: 1.2rem;
+      box-shadow: 0 2px 16px rgba(25, 118, 210, 0.08);
+      padding: 1.5rem 1.2rem;
+      margin-bottom: 2rem;
+      color: #222;
+      position: relative;
+      z-index: 2;
+      border: none;
+      transition: box-shadow 0.2s;
+    }
+    .about-contact-card:hover {
+      box-shadow: 0 6px 32px 0 #00ffd0, 0 0 16px #00eaff;
+      transform: translateY(-2px) scale(1.01);
+    }
+    .about-contact-card .icon {
+      font-size: 2.2rem;
+      margin-right: 0.7rem;
+      color: #1976d2;
+      vertical-align: middle;
+    }
+    .about-contact-card .contact-link {
+      color: #1976d2;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .about-contact-card .contact-link:hover {
+      color: #00bcd4;
+      text-decoration: underline;
+    }
+    @media (max-width: 767.98px) {
+      .about-hero {
+        padding: 1.5rem 0.7rem 1.2rem 0.7rem;
+        font-size: 1rem;
+      }
+      .about-contact-card {
+        padding: 1rem 0.5rem;
+      }
+    }
+    [data-theme='dark'] .about-hero {
+      background: linear-gradient(135deg, #10131a 0%, #23293a 100%);
+      color: #fff;
+      box-shadow: 0 2px 16px 0 rgba(0, 234, 255, 0.10), 0 0 4px 0 #00ffd0;
+    }
+    [data-theme='dark'] .about-contact-card {
+      background: linear-gradient(135deg, #181c24 60%, #10131a 100%);
+      color: #f8fafd;
+      box-shadow: 0 2px 16px 0 rgba(0, 234, 255, 0.10), 0 0 4px 0 #00ffd0;
+    }
+    [data-theme='dark'] .about-contact-card .icon {
+      color: #00eaff;
+    }
+    [data-theme='dark'] .about-contact-card .contact-link {
+      color: #00eaff;
+    }
+    [data-theme='dark'] .about-contact-card .contact-link:hover {
+      color: #00ffd0;
+    }
+  </style>
 </head>
 <body>
   <div class="d-flex">
+    <!-- Sidebar Navigation -->
     <nav class="sidebar bg-dark text-white p-3 vh-100" style="width: 240px">
+      <!-- Logo and Brand -->
       <div class="hotelair-logo">
         <svg viewBox="0 0 32 32" width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -26,6 +134,7 @@
         </svg>
         HotelAir
       </div>
+      <!-- Sidebar Links -->
       <ul class="nav flex-column">
         <li class="nav-item"><a href="dashboard.html" class="nav-link text-white">Dashboard</a></li>
         <li class="nav-item"><a href="rooms.html" class="nav-link text-white">Rooms</a></li>
@@ -39,6 +148,7 @@
       </ul>
     </nav>
     <div class="flex-grow-1">
+      <!-- Header Bar -->
       <header class="navbar navbar-light px-4 shadow-sm">
         <div class="d-flex align-items-center justify-content-between w-100">
           <span class="navbar-brand">About Us</span>
@@ -49,12 +159,24 @@
         </div>
       </header>
       <main class="p-4">
-        <div class="card mb-4">
+        <!-- Hero Section: Colorful intro with nickname and project badge -->
+        <section class="about-hero text-center position-relative mb-4">
+          <h1 class="display-5 fw-bold mb-2">Welcome to <span style="background:linear-gradient(90deg,#ffd600,#00ffd0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-fill-color:transparent;">HotelAir</span></h1>
+          <div class="mb-2">by <span class="nickname">ZACODEC</span> <span class="badge">Team Project</span></div>
+          <p class="lead mb-2">A modern, full-featured hotel management system for seamless operations, guest satisfaction, and efficient administration.</p>
+          <div class="wave"></div>
+        </section>
+        <!-- Contact Card: Email, phone, nickname -->
+        <div class="about-contact-card mx-auto mb-4" style="max-width: 420px;">
+          <h5 class="mb-3"><i class="bi bi-person-circle icon"></i>Contact Details</h5>
+          <div class="mb-2"><i class="bi bi-envelope-at icon"></i>Email: <a href="mailto:f2023266257@umt.edu.pk" class="contact-link">f2023266257@umt.edu.pk</a></div>
+          <div class="mb-2"><i class="bi bi-telephone icon"></i>Phone: <a href="tel:+923022389814" class="contact-link">+92 302 2389814</a></div>
+          <div class="mb-2"><i class="bi bi-person-badge icon"></i>Nickname: <span class="fw-bold" style="color:#00bcd4;">ZACODEC</span></div>
+        </div>
+        <!-- Project & Academic Info: Team, course, features, tech -->
+        <div class="card mb-4" style="background: linear-gradient(90deg,#e3f2fd 60%,#fff 100%); border:none;">
           <div class="card-body">
-            <h3 class="mb-3 text-primary">HotelAir - Hotel Management System</h3>
-            <p class="lead">HotelAir is a modern, full-featured hotel management system designed for seamless operations, guest satisfaction, and efficient administration. This project is developed as part of the Web Technologies course at the University of Management and Technology (UMT).</p>
-            <hr />
-            <h5 class="mb-2">Project & Academic Information</h5>
+            <h4 class="mb-3 text-primary"><i class="bi bi-mortarboard-fill me-2"></i>Academic Project</h4>
             <ul class="list-unstyled mb-3">
               <li><strong>University:</strong> University of Management and Technology (UMT)</li>
               <li><strong>Course:</strong> IT310 - Web Technologies</li>
@@ -64,27 +186,28 @@
             </ul>
             <h5 class="mb-2">Team Members</h5>
             <ul class="list-group mb-3">
-              <li class="list-group-item">Muhammad Zain (F2023266257)</li>
+              <li class="list-group-item">Muhammad Zain (F2023266257) <span class="badge bg-info ms-2">ZACODEC</span></li>
               <li class="list-group-item">Moeen Ahmad Butt (F2021266469)</li>
               <li class="list-group-item">M. Yasir (F2022266665)</li>
             </ul>
             <h5 class="mb-2">Project Overview</h5>
             <p>HotelAir provides a comprehensive platform for hotel management, including:</p>
-            <ul>
-              <li>Room and booking management</li>
-              <li>Guest and staff directory</li>
-              <li>Payments and analytics</li>
-              <li>Calendar and dashboard views</li>
-              <li>Notifications and audit logs</li>
-              <li>Modern responsive UI with dark mode</li>
-              <li>Secure authentication and user roles</li>
+            <ul class="row row-cols-2 row-cols-md-3 g-2 mb-3">
+              <li class="col"><i class="bi bi-door-closed-fill text-primary"></i> Room & Booking Management</li>
+              <li class="col"><i class="bi bi-people-fill text-success"></i> Guest & Staff Directory</li>
+              <li class="col"><i class="bi bi-cash-stack text-warning"></i> Payments & Analytics</li>
+              <li class="col"><i class="bi bi-calendar-event text-info"></i> Calendar & Dashboard</li>
+              <li class="col"><i class="bi bi-bell-fill text-danger"></i> Notifications & Audit Logs</li>
+              <li class="col"><i class="bi bi-moon-stars-fill text-secondary"></i> Modern UI & Dark Mode</li>
+              <li class="col"><i class="bi bi-shield-lock-fill text-dark"></i> Secure Authentication</li>
             </ul>
             <h5 class="mb-2">Technologies Used</h5>
-            <ul>
-              <li>Node.js, Express.js (Backend API)</li>
-              <li>Microsoft SQL Server (Database)</li>
-              <li>HTML5, CSS3, Bootstrap 5, JavaScript (Frontend)</li>
-              <li>Chart.js, FullCalendar, and more</li>
+            <ul class="row row-cols-2 row-cols-md-3 g-2 mb-3">
+              <li class="col"><i class="bi bi-node-plus text-success"></i> Node.js, Express.js</li>
+              <li class="col"><i class="bi bi-database-fill text-primary"></i> Microsoft SQL Server</li>
+              <li class="col"><i class="bi bi-filetype-html text-danger"></i> HTML5, CSS3, Bootstrap 5</li>
+              <li class="col"><i class="bi bi-bar-chart-fill text-info"></i> Chart.js</li>
+              <li class="col"><i class="bi bi-calendar2-week-fill text-warning"></i> FullCalendar</li>
             </ul>
             <h5 class="mb-2">Acknowledgements</h5>
             <ul>
@@ -95,9 +218,15 @@
             <p>For academic queries, please contact the team via UMT email or through the course portal.</p>
           </div>
         </div>
+        <!-- Interactive Fun Section: Button and fun fact box -->
+        <div class="text-center mb-4">
+          <button class="btn btn-lg btn-primary shadow" id="funFactBtn"><i class="bi bi-lightbulb"></i> Show a Fun Fact</button>
+          <div id="funFactBox" class="mt-3" style="font-size:1.1rem;font-weight:500;"></div>
+        </div>
       </main>
     </div>
   </div>
+  <!-- JS includes and interactivity scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="js/storage-utils.js"></script>
   <script>
@@ -122,6 +251,25 @@
     document.getElementById("logoutBtn")?.addEventListener("click", () => {
       localStorage.removeItem("sessionUser");
       window.location.href = "index.html";
+    });
+    // --- Fun Fact Interactivity ---
+    const funFacts = [
+      "HotelAir was built with love and lots of coffee! ☕️",
+      "Did you know? The first hotel in the world opened in 1768.",
+      "Our mascot is a flying pillow! 🛏️",
+      "ZACODEC loves coding late at night.",
+      "The most expensive hotel room in the world costs over $100,000 per night!",
+      "HotelAir supports both dark and light mode for your comfort.",
+      "Team HotelAir can manage hundreds of bookings per day!",
+      "You can contact us anytime at f2023266257@umt.edu.pk.",
+      "We believe in making hotel management fun and easy!"
+    ];
+    document.getElementById('funFactBtn').addEventListener('click', function() {
+      const box = document.getElementById('funFactBox');
+      const idx = Math.floor(Math.random() * funFacts.length);
+      box.textContent = funFacts[idx];
+      box.classList.add('animate__animated','animate__fadeIn');
+      setTimeout(()=>box.classList.remove('animate__animated','animate__fadeIn'), 1000);
     });
   </script>
 </body>

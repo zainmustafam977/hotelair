@@ -1,4 +1,10 @@
-// dashboard.js
+// dashboard.js - Handles dashboard logic for HotelAir
+// Author: Team HotelAir (ZACODEC, Moeen Ahmad Butt, M. Yasir)
+// University of Management and Technology (UMT) | IT310 - Web Technologies
+//
+// This file manages dashboard metrics, charts, notifications, quick actions, and theme.
+//
+// --- Utility Functions ---
 
 // --- LOGIN CHECK ---
 if (!localStorage.getItem("sessionUser")) {

@@ -1,4 +1,10 @@
-// settings.js - Settings management with deployment fixes
+// settings.js - Handles settings and preferences logic for HotelAir
+// Author: Team HotelAir (ZACODEC, Moeen Ahmad Butt, M. Yasir)
+// University of Management and Technology (UMT) | IT310 - Web Technologies
+//
+// This file manages application and user settings, preferences, validation, and theme.
+//
+// --- Utility Functions ---
 // Fixed: Changed from localhost:3000 to relative URLs for mobile compatibility
 // Fixed: Changed from login.html to index.html for navigation
 

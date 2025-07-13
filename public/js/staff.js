@@ -1,7 +1,9 @@
-// staff.js - Staff management with deployment fixes
-// Fixed: Changed from localhost:3000 to relative URLs for mobile compatibility
-// Fixed: Changed from login.html to index.html for navigation
-
+// staff.js - Handles staff management logic for HotelAir
+// Author: Team HotelAir (ZACODEC, Moeen Ahmad Butt, M. Yasir)
+// University of Management and Technology (UMT) | IT310 - Web Technologies
+//
+// This file manages staff data: loading, rendering, validation, and theme.
+//
 // --- LOGIN CHECK ---
 if (!localStorage.getItem("sessionUser")) {
 	window.location.href = "index.html";

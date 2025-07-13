@@ -1,4 +1,9 @@
-// server.js
+// server.js - Main backend API for HotelAir
+// Author: Team HotelAir (ZACODEC, Moeen Ahmad Butt, M. Yasir)
+// University of Management and Technology (UMT)
+// Course: IT310 - Web Technologies
+
+// Import required modules
 const express = require("express");
 const sql = require("mssql");
 const cors = require("cors");
@@ -6,12 +11,15 @@ const Joi = require("joi");
 const path = require("path");
 const config = require("./db.js");
 const app = express();
+
+// Enable CORS and JSON parsing for API
 app.use(cors());
 app.use(express.json());
 
-// Serve static files from the public directory - Required for deployment
+// Serve static files from the public directory (frontend)
 app.use(express.static(path.join(__dirname, 'public')));
 
+// --- Helper function for error handling ---
 const handleError = (res, err) => {
 	console.error("❌ API Error:", err);
 	if (err && err.stack) {
@@ -25,6 +33,8 @@ const handleError = (res, err) => {
 	});
 };
 
+// --- Validation Schemas (Joi) ---
+// Room validation
 const roomSchema = Joi.object({
 	RoomNumber: Joi.string().required(),
 	TypeID: Joi.number().integer().required(),
@@ -32,7 +42,7 @@ const roomSchema = Joi.object({
 	Capacity: Joi.number().integer().positive().required(),
 	Description: Joi.string().allow(null, ""),
 });
-
+// Booking validation
 const bookingSchema = Joi.object({
 	GuestID: Joi.number().integer().required(),
 	RoomID: Joi.number().integer().required(),
@@ -42,7 +52,7 @@ const bookingSchema = Joi.object({
 		.valid("confirmed", "checked-in", "checked-out", "cancelled")
 		.required(),
 });
-
+// Guest validation
 const guestSchema = Joi.object({
 	FullName: Joi.string().required(),
 	Email: Joi.string().email().allow(null, ""),
@@ -50,7 +60,8 @@ const guestSchema = Joi.object({
 	Country: Joi.string().allow(null, ""),
 });
 
-// ------------------------ ROOMS ------------------------
+// ------------------------ ROOMS API ------------------------
+// Get all room types
 app.get("/api/room-types", async (req, res) => {
 	try {
 		await sql.connect(config);
@@ -138,7 +149,7 @@ app.delete("/api/rooms/:id", async (req, res) => {
 	}
 });
 
-// ------------------------ GUESTS ------------------------
+// ------------------------ GUESTS API ------------------------
 app.get("/api/guests", async (req, res) => {
 	try {
 		await sql.connect(config);
@@ -242,7 +253,7 @@ app.delete("/api/guests/:id", async (req, res) => {
 	}
 });
 
-// ------------------------ BOOKINGS ------------------------
+// ------------------------ BOOKINGS API ------------------------
 app.get("/api/bookings", async (req, res) => {
 	try {
 		await sql.connect(config);
@@ -399,7 +410,7 @@ app.delete("/api/bookings/:id", async (req, res) => {
 	}
 });
 
-// ------------------------ STAFF ------------------------
+// ------------------------ STAFF API ------------------------
 // Get all staff
 app.get("/api/staff", async (req, res) => {
 	try {
@@ -502,7 +513,7 @@ app.delete("/api/staff/:id", async (req, res) => {
 	}
 });
 
-// ------------------------ PAYMENTS ------------------------
+// ------------------------ PAYMENTS API ------------------------
 // Get all payments (with guest name)
 app.get("/api/payments", async (req, res) => {
 	try {
@@ -581,7 +592,7 @@ app.delete("/api/payments/:id", async (req, res) => {
 	}
 });
 
-// ------------------------ APP SETTINGS CRUD ------------------------
+// ------------------------ APP SETTINGS CRUD API ------------------------
 // Get all settings
 app.get('/api/settings', async (req, res) => {
 	try {
@@ -647,7 +658,7 @@ app.delete('/api/settings', async (req, res) => {
 	}
 });
 
-// ------------------------ USER PREFERENCES CRUD ------------------------
+// ------------------------ USER PREFERENCES CRUD API ------------------------
 // Get all preferences for a user
 app.get('/api/user-preferences/:userId', async (req, res) => {
 	const { userId } = req.params;
@@ -747,7 +758,7 @@ app.delete('/api/user-preferences/:userId', async (req, res) => {
 	}
 });
 
-// --- AdminProfile CRUD ---
+// --- AdminProfile CRUD API ---
 // Get latest admin profile
 app.get('/api/admin-profile', async (req, res) => {
 	try {
@@ -807,7 +818,7 @@ app.delete('/api/admin-profile/:id', async (req, res) => {
 	}
 });
 
-// --- HotelInfo CRUD ---
+// --- HotelInfo CRUD API ---
 // Get latest hotel info
 app.get('/api/hotel-info', async (req, res) => {
 	try {
@@ -896,7 +907,7 @@ app.post("/api/login", async (req, res) => {
 	}
 });
 
-// --- Notifications CRUD ---
+// --- Notifications CRUD API ---
 app.get('/api/notifications', async (req, res) => {
 	try {
 		await sql.connect(config);
@@ -940,7 +951,7 @@ app.delete('/api/notifications/:id', async (req, res) => {
 	} catch (err) { handleError(res, err); }
 });
 
-// --- AuditLog CRUD ---
+// --- AuditLog CRUD API ---
 app.get('/api/audit-log', async (req, res) => {
 	try {
 		await sql.connect(config);

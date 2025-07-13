@@ -1,3 +1,10 @@
+// payments.js - Handles payment management logic for HotelAir
+// Author: Team HotelAir (ZACODEC, Moeen Ahmad Butt, M. Yasir)
+// University of Management and Technology (UMT) | IT310 - Web Technologies
+//
+// This file manages payment data: loading, rendering, charting, validation, and theme.
+//
+// --- Utility Functions ---
 // payments.js - Payment management with deployment fixes
 // Fixed: Changed from localhost:3000 to relative URLs for mobile compatibility
 // Fixed: Changed from login.html to index.html for navigation
