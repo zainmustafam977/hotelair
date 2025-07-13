@@ -1031,6 +1031,10 @@ app.get('/settings', (req, res) => {
 	res.sendFile(path.join(__dirname, 'public', 'settings.html'));
 });
 
+app.get('/about', (req, res) => {
+	res.sendFile(path.join(__dirname, 'public', 'about.html'));
+});
+
 // 404 handler for any other routes (Replaced problematic catch-all route)
 app.use((req, res) => {
 	if (req.path.startsWith('/api/')) {
