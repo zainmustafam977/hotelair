@@ -1,28 +1,59 @@
-// login.js - Connect login form to API
+// login.js - Connect login form to the API safely and report useful errors.
 
-document.getElementById("loginForm").addEventListener("submit", async (e) => {
-	e.preventDefault();
+const form = document.getElementById("loginForm");
+const errorMsg = document.getElementById("errorMsg");
 
-	const username = document.getElementById("username").value.trim();
-	const password = document.getElementById("password").value.trim();
-	const errorMsg = document.getElementById("errorMsg");
+function showError(message) {
+	if (!errorMsg) return;
+	errorMsg.hidden = false;
+	errorMsg.style.display = "block";
+	errorMsg.textContent = message;
+}
 
-	try {
-		// Fixed: Changed from localhost:3000 to relative URL for mobile compatibility
-		const res = await fetch("/api/login", {
-			method: "POST",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({ username, password }),
-		});
+if (form) {
+	form.addEventListener("submit", async (event) => {
+		event.preventDefault();
+		if (errorMsg) {
+			errorMsg.hidden = true;
+			errorMsg.textContent = "";
+		}
 
-		const data = await res.json();
-		if (!res.ok) throw new Error(data.message || "Login failed");
+		const username = document.getElementById("username")?.value.trim();
+		const password = document.getElementById("password")?.value || "";
+		if (!username || !password) {
+			showError("Username and password are required.");
+			return;
+		}
 
-		// Save session and redirect
-		localStorage.setItem("sessionUser", JSON.stringify(data.user));
-		window.location.href = "dashboard.html";
-	} catch (err) {
-		errorMsg.style.display = "block";
-		errorMsg.textContent = err.message;
-	}
-});
+		const submitButton = form.querySelector("button[type=submit]");
+		if (submitButton) submitButton.disabled = true;
+
+		try {
+			const response = await fetch("/api/login", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({ username, password }),
+			});
+
+			const contentType = response.headers.get("content-type") || "";
+			const data = contentType.includes("application/json")
+				? await response.json()
+				: { message: await response.text() };
+
+			if (!response.ok) {
+				throw new Error(data.message || data.error || "Login failed.");
+			}
+
+			localStorage.setItem("sessionUser", JSON.stringify(data.user));
+			window.location.assign("dashboard.html");
+		} catch (error) {
+			showError(
+				error.message === "Failed to fetch"
+					? "The server is unavailable. Start Node.js with `node server.js` and try again."
+					: error.message
+			);
+		} finally {
+			if (submitButton) submitButton.disabled = false;
+		}
+	});
+}
