@@ -1,146 +1,320 @@
-# <img src="public/favicon.png" width="32" style="vertical-align:middle;"> HotelAir - Hotel Management System
+# HotelAir - Hotel Management System
 
-![Project Badge](https://img.shields.io/badge/HotelAir-Modern%20Hotel%20Management-blueviolet?style=for-the-badge&logo=vercel)
+A full-featured hotel management system designed for managing rooms, bookings, guests, staff, payments, and admin operations. This project is built as a student academic project and has been updated to reflect the current team details and project information.
 
----
+## Project Information
 
-## ✨ About Us
+- Course: Web Engineering
+- Professor: Sir Adeen Riaz
+- University: Khwaja Fareed University of Engineering & Information Technology (KFUEIT)
+- Group Members:
+  - Laiba Noreen — ID: INFT231101091
+  - Eman Rashid — ID: INFT231101100
 
-**HotelAir** is a modern, full-featured hotel management system built as an academic project for the University of Management and Technology (UMT), Lahore.
+Dear Professor Sir Adeen Riaz,
 
-- **Course:** IT310 - Web Technologies (Section V4)
-- **Professor:** Muhammad Jawad Farooq
-- **Semester:** Spring 2024
-- **Team:**
-  - Muhammad Zain (F2023266257) — _ZACODEC_ ([zacodec@umt.edu.pk](mailto:f2023266257@umt.edu.pk))
-  - Moeen Ahmad Butt (F2021266469)
-  - M. Yasir (F2022266665)
-
----
-
-## 🚀 Features
-
-| Feature                | Description                                      |
-|-----------------------|--------------------------------------------------|
-| 🏨 Room Management    | Add, edit, and manage hotel rooms and types      |
-| 📅 Booking Management | Create, update, and track guest bookings         |
-| 👥 Guest Directory    | Manage guest profiles and contact info           |
-| 👨‍💼 Staff Directory  | Manage staff roles and details                   |
-| 💳 Payments           | Track payments, methods, and analytics           |
-| 📊 Dashboard         | Visual analytics, KPIs, and quick stats          |
-| 🗓️ Calendar View      | Interactive calendar for bookings                |
-| ⚙️ Settings           | App, hotel, and user preferences                 |
-| 🌙 Dark Mode          | Modern UI with dark/light mode                   |
-| 📱 Responsive Design  | Mobile-friendly, sidebar overlay, touch support  |
-| 🔒 Secure Auth        | User login and session management                |
-| 🔔 Notifications      | Alerts, audit logs, and activity tracking        |
+If you need any information, feel free to ask us.
 
 ---
 
-## 🖼️ Screenshots
+## Project Overview
 
-> _Add screenshots of the dashboard, bookings, calendar, and mobile view here for a visual overview._
+HotelAir is a modern hotel management dashboard created to streamline hotel operations. It supports:
+
+- Room management
+- Booking management
+- Guest records
+- Staff management
+- Payment tracking
+- Dashboard analytics
+- Calendar scheduling
+- Settings and system preferences
+- User login and session handling
 
 ---
 
-## 🛠️ Tech Stack
+## Features
 
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=node.js&logoColor=white)
-![Express](https://img.shields.io/badge/Express-000000?style=flat-square&logo=express&logoColor=white)
-![SQL Server](https://img.shields.io/badge/SQL%20Server-CC2927?style=flat-square&logo=microsoftsqlserver&logoColor=white)
-![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=flat-square&logo=bootstrap&logoColor=white)
-![Chart.js](https://img.shields.io/badge/Chart.js-FF6384?style=flat-square&logo=chartdotjs&logoColor=white)
-![FullCalendar](https://img.shields.io/badge/FullCalendar-1976d2?style=flat-square)
+- Dashboard with analytics and KPIs
+- Room inventory and status updates
+- Booking creation and status tracking
+- Guest directory management
+- Staff member management
+- Payment history and reporting
+- Calendar-based booking view
+- Secure login workflow
+- Dark mode support
+- Responsive HTML-based front-end
+- REST-style backend interaction using Express and Node.js
 
 ---
 
-## 📦 Project Structure
+## Tech Stack
 
-```
+- Frontend: HTML, JavaScript
+- Backend: Node.js, Express
+- Database: Microsoft SQL Server
+- Libraries: mssql, Chart.js, FullCalendar, and lightweight browser APIs
+
+---
+
+## Project Structure
+
+```text
 HOTELAIR/
-├── server.js              # Backend API server
-├── db.js                  # Database configuration
-├── package.json           # Node.js dependencies
-├── public/                # Frontend files
-│   ├── index.html         # Login page
-│   ├── dashboard.html     # Dashboard
-│   ├── bookings.html      # Bookings management
-│   ├── calendar.html      # Calendar view
-│   ├── guests.html        # Guest management
-│   ├── rooms.html         # Room management
-│   ├── staff.html         # Staff management
-│   ├── payments.html      # Payment management
-│   ├── settings.html      # Settings
-│   ├── about.html         # About Us page
-│   ├── js/                # JavaScript files
-│   ├── css/               # CSS files
-│   └── assets/            # Images, icons, etc.
-└── HotelAir.sql           # Database schema
+├── db.js                 # Database connection configuration
+├── HotelAir.sql          # SQL schema and initial data
+├── package.json          # Project dependencies and scripts
+├── server.js             # Backend server and API routes
+├── public/               # Frontend pages
+│   ├── about.html
+│   ├── bookings.html
+│   ├── calendar.html
+│   ├── dashboard.html
+│   ├── guests.html
+│   ├── index.html
+│   ├── js/
+│   ├── payments.html
+│   ├── rooms.html
+│   ├── settings.html
+│   ├── staff.html
+│   └── favicon.png
+├── docs/
+│   ├── setup-guide.md
+│   └── viva-guide.md
+├── README.md
+└── package-lock.json
 ```
 
 ---
 
-## ⚡ Quick Start
+## Step-by-Step Setup Guide for Beginners
 
-### 1. **Install Dependencies**
+### 1. Install Node.js
+
+Download and install Node.js LTS from:
+
+https://nodejs.org/
+
+Verify installation:
+
+```bash
+node -v
+npm -v
+```
+
+If the commands work, your environment is ready.
+
+### 2. Install Project Dependencies
+
+Open the project folder in terminal and run:
+
 ```bash
 npm install
 ```
 
-### 2. **Start the API Server**
+This installs all modules required by the app.
+
+### 3. Prepare the Database
+
+This project uses Microsoft SQL Server.
+
+#### Option A: Local SQL Server
+
+1. Install SQL Server or SQL Server Express.
+2. Create a database named `HotelAir`.
+3. Open `HotelAir.sql` in SQL Server Management Studio or Azure Data Studio.
+4. Execute the script to create tables and sample data.
+
+#### Option B: Remote SQL Server
+
+If your database is hosted remotely, update the connection details in `db.js`:
+
+```js
+const config = {
+  user: 'your_username',
+  password: 'your_password',
+  server: 'your_server_name',
+  database: 'HotelAir',
+  options: {
+    trustServerCertificate: true,
+    encrypt: true,
+    enableArithAbort: true
+  }
+};
+```
+
+### 4. Start the Backend Server
+
+From the project root, run:
+
 ```bash
 node server.js
 ```
-API server runs at `http://localhost:3000`
 
-### 3. **Start the Web Server**
-- **Option A:** VS Code Live Server (recommended)
-- **Option B:**
-  ```bash
-  npx serve public
-  ```
-- **Option C:**
-  ```bash
-  cd public
-  python -m http.server 5500
-  ```
+The server should start on:
 
-### 4. **Access the Application**
-- **Frontend:** `http://localhost:5500` (or your chosen port)
-- **API:** `http://localhost:3000/api/...`
+```text
+http://localhost:3000
+```
 
----
+### 5. Open the App
 
-## 🗄️ Database Configuration
+Open the browser and visit:
 
-- **Server:** den1.mssql8.gear.host
-- **Database:** HotelAir
-- **Username:** hotelair
-- **Password:** (see `db.js`)
+```text
+http://localhost:3000/
+```
 
----
+or serve the public folder with a local static server if needed:
 
-## 📚 Documentation
+```bash
+npx serve public
+```
 
-- All code is thoroughly commented for easy understanding.
-- See the [About Us](public/about.html) page for team, academic, and contact info.
-- For schema details, see `HotelAir.sql`.
+Then open the given local URL.
+
+### 6. Login
+
+Use the login screen to access the dashboard.
+
+If no credentials were created yet, check the server logic and database users or add a valid admin record to the database.
 
 ---
 
-## 📬 Contact
+## Database Configuration Notes
 
-- **Lead:** Muhammad Zain (ZACODEC) — [f2023266257@umt.edu.pk](mailto:f2023266257@umt.edu.pk)
-- **Phone:** +92 302 2389814
-- **University:** [UMT Lahore](https://www.umt.edu.pk/)
+The main database connection file is:
 
----
+```text
+db.js
+```
 
-## 🙏 Acknowledgements
-
-- Special thanks to our professor, Muhammad Jawad Farooq, for guidance and support.
-- Inspired by real-world hotel management needs and modern web design best practices.
+It contains the SQL Server credentials and connection settings for the application. If you are running on a different machine, update the server details, username, password, and database name in that file.
 
 ---
 
-> _HotelAir — Making hotel management modern, efficient, and fun!_ 
+## Common Troubleshooting
+
+### Problem: Server does not start
+
+Check:
+
+- Node.js is installed
+- dependencies were installed using `npm install`
+- no port conflict is blocking port 3000
+- database credentials are valid
+
+### Problem: Database connection fails
+
+Check:
+
+- SQL Server is running
+- database exists
+- username/password are correct
+- firewall or network access allows the connection
+- `trustServerCertificate` and `encrypt` settings match your environment
+
+### Problem: Pages do not load
+
+Check:
+
+- server is running
+- public folder files exist
+- browser is opened to correct URL
+- app routes match the frontend page names
+
+---
+
+## Viva/Presentation Guide
+
+This project is designed to be explained clearly in a viva. Use the following points to present it confidently.
+
+### 1. Problem Statement
+The project solves the problem of manually managing hotel operations such as room booking, guest information, payment tracking, staff records, and dashboard reporting.
+
+### 2. Objectives
+- automate manual hotel management tasks
+- maintain room and booking records efficiently
+- store guest and staff data centrally
+- monitor hotel performance using dashboard analytics
+- simplify front-office operations
+
+### 3. Scope
+The system covers:
+
+- room management
+- booking management
+- guest records
+- staff directory
+- payment tracking
+- calendar view
+- administrative settings
+- login-based access control
+
+### 4. System Flow
+1. User opens the login page.
+2. User logs in to access the system.
+3. Admin accesses dashboard and management pages.
+4. Records are read/written to SQL Server.
+5. Data is displayed in tables, charts, and calendar views.
+
+### 5. Modules of the System
+- Authentication module
+- Dashboard module
+- Room management module
+- Booking management module
+- Guest management module
+- Staff management module
+- Payment management module
+- Settings module
+- About page
+
+### 6. Important Project Details
+- Backend is built using Node.js and Express.
+- Application data is stored in SQL Server.
+- HTML pages are used for the user interface.
+- JavaScript is used to handle client-side logic.
+- The app is structured for simplicity and academic demonstration.
+
+### 7. Defense Questions You Should Be Ready For
+
+Be prepared to answer:
+
+- What problem does this project solve?
+- Why choose Node.js and SQL Server?
+- How is data stored and accessed?
+- What are the main modules in the project?
+- How does login work?
+- How do you handle room and booking records?
+- What are the challenges in the project?
+- How would you improve the system in future versions?
+
+### 8. Suggested Viva Summary Script
+
+> This project is a hotel management system designed to automate and simplify daily hotel operations. It helps users manage rooms, bookings, guests, staff, and payments in one place. The application uses Node.js and Express for backend logic, SQL Server for database storage, and HTML/JavaScript for the interface. The dashboard provides key insights and operational visibility to hotel administrators. The overall goal is to improve efficiency, reduce manual effort, and create a professional management system for use in hotel operations.
+
+---
+
+## Academic Team Information
+
+- Group members:
+  - Laiba Noreen — INFT231101091
+  - Eman Rashid — INFT231101100
+- Course: Web Engineering
+- Professor: Sir Adeen Riaz
+- University: Khwaja Fareed University of Engineering & Information Technology (KFUEIT)
+
+---
+
+## Final Notes
+
+This project is structured for learning, demonstration, and academic evaluation. It is designed to be understandable for beginners while still demonstrating the logic and flow of a complete hotel management system.
+
+For any clarifications, contact the group or ask the supervisor directly.
+
+---
+
+## License
+
+This project is intended for academic and educational use.

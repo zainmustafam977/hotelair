@@ -1,6 +1,4 @@
 <!-- About Us Page for HotelAir -->
-<!-- Author: Team HotelAir (ZACODEC, Moeen Ahmad Butt, M. Yasir) -->
-<!-- University of Management and Technology (UMT) | IT310 - Web Technologies -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,9 +9,7 @@
 </head>
 <body>
   <div>
-    <!-- Sidebar Navigation -->
     <nav>
-      <!-- Logo and Brand -->
       <div>
         <svg viewBox="0 0 32 32" width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -29,7 +25,6 @@
         </svg>
         HotelAir
       </div>
-      <!-- Sidebar Links -->
       <ul>
         <li><a href="dashboard.html">Dashboard</a></li>
         <li><a href="rooms.html">Rooms</a></li>
@@ -43,124 +38,98 @@
       </ul>
     </nav>
     <div>
-      <!-- Header Bar -->
       <header>
         <div>
           <span>About Us</span>
           <div>
-            <button id="darkModeToggle" title="Toggle dark mode"><i class="bi bi-moon-fill"></i></button>
+            <button id="darkModeToggle" title="Toggle dark mode">🌙</button>
             <button id="logoutBtn">Logout</button>
           </div>
         </div>
       </header>
+
       <main>
-        <!-- Hero Section: Colorful intro with nickname and project badge -->
         <section>
           <h1>Welcome to HotelAir</h1>
-          <div>by <span>ZACODEC</span> <span>Team Project</span></div>
-          <p>A modern, full-featured hotel management system for seamless operations, guest satisfaction, and efficient administration.</p>
+          <p>A hotel management system built to simplify room, booking, guest, staff, and payment operations.</p>
+          <p><strong>Course:</strong> Web Engineering</p>
+          <p><strong>Professor:</strong> Sir Adeen Riaz</p>
+          <p><strong>University:</strong> Khwaja Fareed University of Engineering &amp; Information Technology (KFUEIT)</p>
         </section>
-        <!-- Contact Card: Email, phone, nickname -->
+
         <div>
-          <h5>Contact Details</h5>
-          <div>Email: <a href="mailto:f2023266257@umt.edu.pk">f2023266257@umt.edu.pk</a></div>
-          <div>Phone: <a href="tel:+923022389814">+92 302 2389814</a></div>
-          <div>Nickname: <span>ZACODEC</span></div>
+          <h3>Group Members</h3>
+          <ul>
+            <li><strong>Laiba Noreen</strong> — ID: INFT231101091</li>
+            <li><strong>Eman Rashid</strong> — ID: INFT231101100</li>
+          </ul>
         </div>
-        <!-- Project & Academic Info: Team, course, features, tech -->
+
         <div>
-          <div>
-            <h4>Academic Project</h4>
-            <ul>
-              <li><strong>University:</strong> University of Management and Technology (UMT)</li>
-              <li><strong>Course:</strong> IT310 - Web Technologies</li>
-              <li><strong>Section:</strong> V4</li>
-              <li><strong>Professor:</strong> Muhammad Jawad Farooq</li>
-              <li><strong>Semester:</strong> Spring 2024</li>
-            </ul>
-            <h5>Team Members</h5>
-            <ul>
-              <li>Muhammad Zain (F2023266257) <span>ZACODEC</span></li>
-              <li>Moeen Ahmad Butt (F2021266469)</li>
-              <li>M. Yasir (F2022266665)</li>
-            </ul>
-            <h5>Project Overview</h5>
-            <p>HotelAir provides a comprehensive platform for hotel management, including:</p>
-            <ul>
-              <li>Room & Booking Management</li>
-              <li>Guest & Staff Directory</li>
-              <li>Payments & Analytics</li>
-              <li>Calendar & Dashboard</li>
-              <li>Notifications & Audit Logs</li>
-              <li>Modern UI & Dark Mode</li>
-              <li>Secure Authentication</li>
-            </ul>
-            <h5>Technologies Used</h5>
-            <ul>
-              <li>Node.js, Express.js</li>
-              <li>Microsoft SQL Server</li>
-              <li>HTML5, CSS3, Bootstrap 5</li>
-              <li>Chart.js</li>
-              <li>FullCalendar</li>
-            </ul>
-            <h5>Acknowledgements</h5>
-            <ul>
-              <li>Special thanks to our professor, Muhammad Jawad Farooq, for guidance and support.</li>
-              <li>Inspired by real-world hotel management needs and modern web design best practices.</li>
-            </ul>
-            <h5>Contact</h5>
-            <p>For academic queries, please contact the team via UMT email or through the course portal.</p>
-          </div>
+          <h3>Project Purpose</h3>
+          <p>
+            HotelAir is designed to help hotel administrators manage rooms, bookings, guest information,
+            staff records, and payment history through a single dashboard. The system helps reduce manual tasks,
+            improve efficiency, and provide a professional hotel workflow for academic and practical use.
+          </p>
         </div>
-        <!-- Interactive Fun Section: Button and fun fact box -->
+
         <div>
-          <button id="funFactBtn">Show a Fun Fact</button>
-          <div id="funFactBox"></div>
+          <h3>Academic Information</h3>
+          <ul>
+            <li>Course: Web Engineering</li>
+            <li>Professor: Sir Adeen Riaz</li>
+            <li>Institution: KFUEIT</li>
+            <li>Project: HotelAir Management System</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>Project Features</h3>
+          <ul>
+            <li>Room management</li>
+            <li>Booking management</li>
+            <li>Guest management</li>
+            <li>Staff management</li>
+            <li>Payment tracking</li>
+            <li>Dashboard analytics</li>
+            <li>Calendar-based booking overview</li>
+            <li>Settings and admin preferences</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>Contact</h3>
+          <p>Dear Professor Sir Adeen Riaz, if you need any information, feel free to ask us.</p>
         </div>
       </main>
     </div>
   </div>
+
   <script src="js/storage-utils.js"></script>
   <script>
-    // --- DARK MODE TOGGLE ---
     function applyTheme() {
       const theme = localStorage.getItem('theme') || 'light';
       document.documentElement.setAttribute('data-theme', theme);
       const btn = document.getElementById('darkModeToggle');
       if (btn) {
-        btn.innerHTML = theme === 'dark' ? '<i class="bi bi-sun-fill"></i>' : '<i class="bi bi-moon-fill"></i>';
-        btn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+        btn.textContent = theme === 'dark' ? '☀️' : '🌙';
       }
     }
+
     document.getElementById('darkModeToggle')?.addEventListener('click', () => {
       const current = localStorage.getItem('theme') === 'dark' ? 'dark' : 'light';
       const next = current === 'dark' ? 'light' : 'dark';
       localStorage.setItem('theme', next);
       applyTheme();
     });
+
+    document.getElementById('logoutBtn')?.addEventListener('click', () => {
+      localStorage.removeItem('sessionUser');
+      window.location.href = 'index.html';
+    });
+
     applyTheme();
-    // --- LOGOUT BUTTON ---
-    document.getElementById("logoutBtn")?.addEventListener("click", () => {
-      localStorage.removeItem("sessionUser");
-      window.location.href = "index.html";
-    });
-    // --- Fun Fact Interactivity ---
-    const funFacts = [
-      "HotelAir was built with love and lots of coffee! ☕️",
-      "Did you know? The first hotel in the world opened in 1768.",
-      "Our mascot is a flying pillow! 🛏️",
-      "ZACODEC loves coding late at night.",
-      "The most expensive hotel room in the world costs over $100,000 per night!",
-      "HotelAir supports both dark and light mode for your comfort.",
-      "Team HotelAir can manage hundreds of bookings per day!",
-      "You can contact us anytime at f2023266257@umt.edu.pk.",
-      "We believe in making hotel management fun and easy!"
-    ];
-    document.getElementById('funFactBtn').addEventListener('click', function() {
-      const box = document.getElementById('funFactBox');
-      const idx = Math.floor(Math.random() * funFacts.length);
-      box.textContent = funFacts[idx];
-    });
   </script>
 </body>
 </html>
